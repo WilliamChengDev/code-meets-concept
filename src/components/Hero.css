@@ -1,0 +1,89 @@
+.hero-container{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+}
+
+        .code-editor-container{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+        }
+
+                .topbar-container{
+                        position: static;
+                        height: fit-content;
+                        width: 100%;
+                        background-color: var(--medium);
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                }
+
+                        .topbar-tab{
+                                height: fit-content;
+                                width: 20%;
+                                display: flex;
+                                flex-direction: column;
+                                position: relative;
+                                justify-content: center;
+                                align-items: center;
+                        }
+
+                                .topbar-tab-title{
+                                        width: 100%;
+                                        height: 3vh;
+                                }
+
+                                .topbar-tab-title h1{
+                                        font-family: 'JetbrainsMono-Regular';
+                                        color: var(--blue);
+                                        margin: 0.3rem;
+                                        text-align: center;
+                                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                }
+
+                                .topbar-tab-highlight{
+                                        width: 100%;
+                                        height: 0.35vh;
+                                        background-color: var(--blue);
+                                }
+
+                        .topbar-icons{
+                                width: 7%;
+                                background-color: red;
+                        }
+                
+                .code-section-container{
+                        width: 100%;
+                        height: 80vh;
+                        background-color: blue;
+                        position: static;
+                }
+
+                        .numbered-lines-container{
+                                max-width: 1%;
+                                height: 100%;
+                                background-color: orange;
+                                display: flex;
+                                flex-direction: column;
+                        }
+
+                .terminal-section-container{
+                        width: 100%;
+                        height: 17vh;
+                        background-color: aqua;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                }
+
+                        .terminal-buttons{
+                                width: 100%;
+                                height: 3vh;
+                                background-color: brown;
+                                display: flex;
+                        }
