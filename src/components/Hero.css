@@ -60,18 +60,84 @@
                 .code-section-container{
                         width: 100%;
                         height: 80vh;
-                        background-color: blue;
+                        background-color: var(--dark);
                         position: static;
+                        display: flex;
+                        flex-direction: row;  
                 }
 
                         .numbered-lines-container{
-                                max-width: 1%;
+                                max-width: 3%;
+                                width: fit-content;
                                 height: 100%;
-                                background-color: orange;
+                                background-color: var(--dark);
                                 display: flex;
                                 flex-direction: column;
                         }
 
+                                .numbered-lines-container div{
+                                        font-family: JetbrainsMono-Regular;
+                                        color: var(--light);
+                                        padding-top: 0.2rem;
+                                        padding-left: 0.2rem;
+                                        padding-right: 0.2rem;
+                                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                }
+                        
+                        .number-editor-bar{
+                                min-width: .2%;
+                                height: 100%;
+                                background-color: var(--medium);
+                        }
+
+                        .editor-container{
+                                width: 100%;
+                                height: 100%;
+                                background-color: var(--dark);
+                                display: flex;
+                                flex-direction: column;
+                        }
+
+                                .editor-container div{
+                                        font-family: JetbrainsMono-Regular;
+                                        color: var(--light);
+                                        padding: 0.2rem 0.2rem 0rem 0.2rem; /* padding-top, padding-right, padding-bottom, padding-left */
+                                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                        user-select: none;
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                }
+
+                                /* Only special line uses flex to split text vs. dash‐filler: */
+                                .code-with-effect {
+                                        display: flex;
+                                        align-items: center;
+                                        overflow: visible;
+                                        font-family: JetbrainsMono-Regular;
+                                        color: var(--light);
+                                }
+
+                                        /*SPECIAL TEXT EFFECTS--------------------------------------------------------------------------------------------------------------------------------*/
+                                        /* This empty <span> will stretch to fill “remaining” width: */
+                                        .dash-fill {
+                                                flex-grow: 1;
+                                                white-space: nowrap;
+                                        }
+
+                                        /* 4) Insert a bunch of dashes via CSS content (on a pseudo‐element) */
+                                        .dash-fill::before {
+                                                content: "//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+                                        }
+
+                                        .plus-seg{
+                                                flex-grow: 1;
+                                                white-space: nowrap;
+                                        }
+
+                                        .plus-seg::before {
+                                                content: " //++++++++++++++++++++++++/";
+                                        }
+                                                                
                 .terminal-section-container{
                         width: 100%;
                         height: 17vh;
