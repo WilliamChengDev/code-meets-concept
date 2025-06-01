@@ -82,6 +82,7 @@
                                         padding-left: 0.2rem;
                                         padding-right: 0.2rem;
                                         font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                        user-select: none;
                                 }
                         
                         .number-editor-bar{
@@ -100,7 +101,7 @@
 
                                 .editor-container div{
                                         font-family: JetbrainsMono-Regular;
-                                        color: var(--light);
+                                        color: var(--medium);
                                         padding: 0.2rem 0.2rem 0rem 0.2rem; /* padding-top, padding-right, padding-bottom, padding-left */
                                         font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
                                         user-select: none;
@@ -114,8 +115,12 @@
                                         align-items: center;
                                         overflow: visible;
                                         font-family: JetbrainsMono-Regular;
-                                        color: var(--light);
+                                        color: var(--medium);
                                 }
+
+                                        .code-with-effect div{
+                                                padding: 0;
+                                        }
 
                                         /*SPECIAL TEXT EFFECTS--------------------------------------------------------------------------------------------------------------------------------*/
                                         /* This empty <span> will stretch to fill “remaining” width: */
@@ -126,16 +131,39 @@
 
                                         /* 4) Insert a bunch of dashes via CSS content (on a pseudo‐element) */
                                         .dash-fill::before {
-                                                content: "//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+                                                content: "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
                                         }
 
                                         .plus-seg{
-                                                flex-grow: 1;
                                                 white-space: nowrap;
                                         }
 
                                         .plus-seg::before {
-                                                content: " //++++++++++++++++++++++++/";
+                                                content: " ++++++++++++++++++++++++/";
+                                        }
+
+                                        .star-seg{
+                                                white-space: nowrap;
+                                        }
+
+                                        .star-seg::before {
+                                                content: " ************************/";
+                                        }
+
+                                        .min-seg{
+                                                white-space: nowrap;
+                                        }
+
+                                        .min-seg::before {
+                                                content: " ------------------------/";
+                                        }
+
+                                        .blank-seg{
+                                                white-space: nowrap;
+                                        }
+                                        
+                                        .blank-seg::before {
+                                                content: "  \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0/";
                                         }
                                                                 
                 .terminal-section-container{
@@ -153,3 +181,30 @@
                                 background-color: brown;
                                 display: flex;
                         }
+
+.hero-content{
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+}
+
+        .hero-content h2{
+                font-family: 'GeneralSans-Semibold';
+                color: var(--green);
+                margin: 0.3rem;
+                text-align: center;
+                font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+        }
+
+        .hero-content h1{
+                font-family: 'GeneralSans-Semibold';
+                color: var(--light);
+                margin: 0rem;
+                padding: 0;
+                line-height: 0.8;
+                text-align: right;
+                font-size: clamp(0.5rem, 15vw, 20rem); /*min preferred max*/
+        }
