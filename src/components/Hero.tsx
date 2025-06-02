@@ -3,38 +3,62 @@ import { useLayoutEffect, useRef } from 'react';
 
 function Hero() {
 
+        const line11Ref = useRef<HTMLDivElement>(null);
         const line13Ref = useRef<HTMLDivElement>(null);
         const line18Ref = useRef<HTMLDivElement>(null);
+        const subtitleRef = useRef<HTMLDivElement>(null);
         const williamRef = useRef<HTMLDivElement>(null);
+        const chengRef = useRef<HTMLDivElement>(null);
 
         const updateOverlay = () => {
                 if (
-                  !line13Ref.current ||
-                  !line18Ref.current ||
-                  !williamRef.current
+                        !line11Ref.current ||
+                        !line13Ref.current ||
+                        !line18Ref.current ||
+                        !subtitleRef.current ||
+                        !williamRef.current ||
+                        !chengRef.current
                 ) {
                   return;
                 }
                 
                 const lineHeight = line13Ref.current.getBoundingClientRect().height;
-                const line13Bottom = line13Ref.current.getBoundingClientRect().bottom;
-                const line18Top = line18Ref.current.getBoundingClientRect().top;
                 
-                const topPx = line13Bottom - lineHeight / 2; // Center the "William" text vertically on line 13
-                const gapPx = line18Top - line13Bottom; // Calculate the gap between line 13 and line 18
-                const topBias = 0.93
-                const sizeBias = 1.7
+                const line11Rect = line11Ref.current.getBoundingClientRect();
+                const line13Rect = line13Ref.current.getBoundingClientRect();
+                const line18Rect = line18Ref.current.getBoundingClientRect();
 
-                console.log("line13Bottom", line13Bottom);
-                console.log("line18Top", line18Top);
+                const subtitleBottomPx = line11Rect.top; // Calculate the bottom position of the subtitle
+                const subtitleBottomBias = 0.89; // Bias to adjust the subtitle position
+
+                const gapPx = line18Rect.top - line13Rect.bottom; // Calculate the gap between line 13 and line 18
+                const williamTopPx = line13Rect.bottom - lineHeight / 2; // Center the "William" text vertically on line 13
+                const williamTopBias = 0.93
+                const williamSizeBias = 1.7
+                const chengTopPx = line18Rect.bottom - lineHeight / 2; // Center the "Cheng" text vertically on line 23
+                const chengSizeBias = 1.65
+                const chengTopBias = 0.95
+
+
+                console.log("line13Bottom", line13Rect.bottom);
+                console.log("line18Top", line18Rect.top);
                 console.log("lineHeight", lineHeight);
-                console.log("topPx", topPx);
+                console.log("williamTopPx", williamTopPx);
                 console.log("gapPx", gapPx);
             
                 // set position, font size, and line height of the "William" text
-                williamRef.current.style.top = topPx * topBias+ "px";
-                williamRef.current.style.fontSize = gapPx * sizeBias + "px";
-                williamRef.current.style.lineHeight = gapPx * sizeBias + "px";
+                williamRef.current.style.top = williamTopPx * williamTopBias+ "px";
+                williamRef.current.style.fontSize = gapPx * williamSizeBias + "px";
+                williamRef.current.style.lineHeight = gapPx * williamSizeBias + "px";
+                // set position, font size, and line height of the "Cheng" text
+                chengRef.current.style.top = chengTopPx * chengTopBias + "px";
+                chengRef.current.style.fontSize = gapPx * chengSizeBias + "px";
+                chengRef.current.style.lineHeight = gapPx * chengSizeBias + "px";
+                // set position of the subtitle text
+                subtitleRef.current.style.top = subtitleBottomPx * subtitleBottomBias + "px";
+                subtitleRef.current.style.fontSize = lineHeight * 2 + "px";
+                subtitleRef.current.style.lineHeight = lineHeight * 2 + "px";
+
         };
             
 
@@ -72,11 +96,7 @@ function Hero() {
                         <div className='code-section-container'>
                                 <div className='numbered-lines-container'>
                                         {Array.from({ length: 70 }, (_, i) => (
-                                                i === 12 ? (
-                                                        <div key={"num" + i} ref={line13Ref}>{i + 1}</div>
-                                                ) : (
-                                                        i < 9 ? <div key={"num" + i}>{"0" + (i + 1)}</div> : <div key={"num" + i}>{i + 1}</div>
-                                                )
+                                                i < 9 ? <div key={"num" + i}>{"0" + (i + 1)}</div> : <div key={"num" + i}>{i + 1}</div>
                                         ))}
                                 </div>
                                 <div className='number-editor-bar'></div>
@@ -99,14 +119,14 @@ function Hero() {
                                         <div>{"\u00a0\u00a0\u00a0\u00a0\u00a0</React.StrictMode>"}</div>
                                         <div>{")"}</div>
 
-                                        <div className="code-with-effect">
+                                        <div className="code-with-effect" ref={line11Ref}>
                                                 <span>{"//"}</span>
                                                 <span className="dash-fill"></span>
                                         </div>
 
                                         <div>{"export default function App() {"}</div>
 
-                                        <div className="code-with-effect">
+                                        <div className="code-with-effect" ref={line13Ref}>
                                                 <span>{"//"}</span>
                                                 <span className="dash-fill"></span>
                                         </div>
@@ -186,7 +206,12 @@ function Hero() {
                                 <div className='terminal-buttons'></div>
                         </div>
                 </div>
+                <div className='subtitle-container' ref={subtitleRef}>
+                        <div className='subtitle-comment'>//</div>
+                        <div className='subtitle-text'>Code Meets Concept</div>
+                </div>
                 <div className='william' ref={williamRef}>William</div>
+                <div className='cheng' ref={chengRef}>Cheng</div>
         </div>
         );
 }

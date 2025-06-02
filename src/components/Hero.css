@@ -183,7 +183,37 @@
                                 display: flex;
                         }
 
+        .subtitle-container{
+                position: absolute;
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+
+        }
+
+                .subtitle-comment{
+                        font-family: JetbrainsMono-Regular;
+                        color: var(--green);
+                        transform: scaleY(0.8);
+                        margin-top: .25vh;
+                }
+
+                .subtitle-text{
+                        font-family: GeneralSans-Semibold;
+                        color: var(--green);
+                }
+
         .william{
+                position: absolute;
+                font-family: GeneralSans-Semibold;
+                letter-spacing: 0.1vw;
+                color: var(--light);
+                right: 0;
+        }
+
+        .cheng{
                 position: absolute;
                 font-family: GeneralSans-Semibold;
                 letter-spacing: 0.1vw;
