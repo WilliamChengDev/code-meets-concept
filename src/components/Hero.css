@@ -2,6 +2,8 @@
         position: relative;
         width: 100%;
         height: 100%;
+        margin: 0;          /* just in case */
+        padding: 0;         /* make sure there’s no extra space inside */
         z-index: 0;
 }
 
@@ -71,7 +73,7 @@
                                 width: fit-content;
                                 height: 100%;
                                 background-color: var(--dark);
-                                display: flex;
+                                display: inline-block;
                                 flex-direction: column;
                         }
 
@@ -95,8 +97,7 @@
                                 width: 100%;
                                 height: 100%;
                                 background-color: var(--dark);
-                                display: flex;
-                                flex-direction: column;
+                                display: inline-block;
                         }
 
                                 .editor-container div{
@@ -182,29 +183,10 @@
                                 display: flex;
                         }
 
-.hero-content{
-        position: absolute;
-        z-index: 10;
-        width: 100%;
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
-}
-
-        .hero-content h2{
-                font-family: 'GeneralSans-Semibold';
-                color: var(--green);
-                margin: 0.3rem;
-                text-align: center;
-                font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
-        }
-
-        .hero-content h1{
-                font-family: 'GeneralSans-Semibold';
+        .william{
+                position: absolute;
+                font-family: GeneralSans-Semibold;
+                letter-spacing: 0.1vw;
                 color: var(--light);
-                margin: 0rem;
-                padding: 0;
-                line-height: 0.8;
-                text-align: right;
-                font-size: clamp(0.5rem, 15vw, 20rem); /*min preferred max*/
+                right: 0;
         }

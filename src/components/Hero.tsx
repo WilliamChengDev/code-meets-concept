@@ -1,6 +1,60 @@
 import './Hero.css';
+import { useLayoutEffect, useRef } from 'react';
 
 function Hero() {
+
+        const line13Ref = useRef<HTMLDivElement>(null);
+        const line18Ref = useRef<HTMLDivElement>(null);
+        const williamRef = useRef<HTMLDivElement>(null);
+
+        const updateOverlay = () => {
+                if (
+                  !line13Ref.current ||
+                  !line18Ref.current ||
+                  !williamRef.current
+                ) {
+                  return;
+                }
+                
+                const lineHeight = line13Ref.current.getBoundingClientRect().height;
+                const line13Bottom = line13Ref.current.getBoundingClientRect().bottom;
+                const line18Top = line18Ref.current.getBoundingClientRect().top;
+                
+                const topPx = line13Bottom - lineHeight / 2; // Center the "William" text vertically on line 13
+                const gapPx = line18Top - line13Bottom; // Calculate the gap between line 13 and line 18
+                const topBias = 0.93
+                const sizeBias = 1.7
+
+                console.log("line13Bottom", line13Bottom);
+                console.log("line18Top", line18Top);
+                console.log("lineHeight", lineHeight);
+                console.log("topPx", topPx);
+                console.log("gapPx", gapPx);
+            
+                // set position, font size, and line height of the "William" text
+                williamRef.current.style.top = topPx * topBias+ "px";
+                williamRef.current.style.fontSize = gapPx * sizeBias + "px";
+                williamRef.current.style.lineHeight = gapPx * sizeBias + "px";
+        };
+            
+
+        useLayoutEffect(() => {
+                // Run once on mount:
+                updateOverlay();
+
+                // IMPORTANT Then wait for all fonts to load, then remeasure:
+                document.fonts.ready.then(() => {
+                        updateOverlay();
+                });
+
+                // Recompute whenever window resizes:
+                window.addEventListener("resize", updateOverlay);
+
+                //remove listener on unmount
+                return () => {
+                        window.removeEventListener("resize", updateOverlay);
+                };
+        }, []);
 
         return (
         <div className="hero-container">
@@ -18,7 +72,11 @@ function Hero() {
                         <div className='code-section-container'>
                                 <div className='numbered-lines-container'>
                                         {Array.from({ length: 70 }, (_, i) => (
-                                                i < 9 ? <div key={"num" + i}>{"0" + (i + 1)}</div> : <div key={"num" + i}>{i + 1}</div>
+                                                i === 12 ? (
+                                                        <div key={"num" + i} ref={line13Ref}>{i + 1}</div>
+                                                ) : (
+                                                        i < 9 ? <div key={"num" + i}>{"0" + (i + 1)}</div> : <div key={"num" + i}>{i + 1}</div>
+                                                )
                                         ))}
                                 </div>
                                 <div className='number-editor-bar'></div>
@@ -47,6 +105,7 @@ function Hero() {
                                         </div>
 
                                         <div>{"export default function App() {"}</div>
+
                                         <div className="code-with-effect">
                                                 <span>{"//"}</span>
                                                 <span className="dash-fill"></span>
@@ -71,10 +130,11 @@ function Hero() {
                                                 <span className='blank-seg'></span>
                                                 <span className='star-seg'></span>
                                         </div>
-                                        <div className="code-with-effect">
+                                        <div className="code-with-effect" ref={line18Ref}>
                                                 <span>{"//"}</span>
                                                 <span className='min-seg'></span>
                                                 <span className='blank-seg'></span>
+                                                <div className='dash-fill'></div>
                                         </div>
                                         <div className="code-with-effect">
                                                 <span>{"//"}</span>
@@ -126,11 +186,7 @@ function Hero() {
                                 <div className='terminal-buttons'></div>
                         </div>
                 </div>
-                <div className="hero-content">
-                        <h2>//Code Meets Concept</h2>
-                        <h1>William</h1>
-                        <h1>Cheng</h1>
-                </div>
+                <div className='william' ref={williamRef}>William</div>
         </div>
         );
 }
