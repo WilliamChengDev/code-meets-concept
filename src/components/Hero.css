@@ -170,18 +170,101 @@
                 .terminal-section-container{
                         width: 100%;
                         height: 17vh;
-                        background-color: aqua;
+                        background-color: var(--dark);
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                 }
 
-                        .terminal-buttons{
+                        .terminal-topbar{
                                 width: 100%;
                                 height: 3vh;
-                                background-color: brown;
+                                background-color: var(--medium);
                                 display: flex;
+                                align-items: center;
                         }
+
+                                .terminal-topbar-text {
+                                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                        width: fit-content;
+                                        font-family: JetbrainsMono-Regular;
+                                        color: var(--light);
+                                        margin: 0;
+                                        padding: 0 2vw .3vh 2vw;
+                                        opacity: 0.25;
+                                }
+
+                                .terminal-button-container{
+                                        height: 100%;
+                                        display: flex;
+                                        margin: 0;
+                                        flex-direction: column;
+                                        justify-content: center;
+                                        align-items: center;
+                                }
+
+                                        .terminal-button-text {
+                                                opacity: 1;
+                                                height: 100%;
+                                                color: var(--light);
+                                                font-family: JetbrainsMono-Regular;
+                                                font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                                padding: 0 2vw 0 2vw;
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+                                        }
+
+                                        .terminal-button-bar{
+                                                width: 100%;
+                                                min-height: .3vh;
+                                                background-color: var(--light);
+                                        }
+
+                                .terminal-text-container{
+                                        width: 95%;
+                                        height: 100%;
+                                        display: flex;
+                                        flex-direction: row;
+                                }
+
+                        .terminal-text-container{
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                justify-content: space-between;
+                        }
+
+                                .terminal-text-left{
+                                        width: 45vw;
+                                        height: 100%;
+                                        display: flex;
+                                        flex-direction: row;
+                                        align-items: center;
+                                }
+
+                                        .terminal-text-left h1{
+                                                font-family: JetbrainsMono-Regular;
+                                                color: var(--green);
+                                                font-size: clamp(0.5rem, 2.5vw, 3rem); /*min preferred max*/
+                                                margin: 0;
+                                        }
+
+                                .terminal-text-right{
+                                        width: 45vw;
+                                        height: 100%;
+                                        display: flex;
+                                        flex-direction: row;
+                                        align-items: center;
+                                        justify-content: flex-end;
+                                }
+                                
+                                        .terminal-text-right h1{
+                                                font-family: GeneralSans-Semibold;
+                                                color: var(--light);
+                                                font-size: clamp(0.5rem, 4vw, 4rem); /*min preferred max*/
+                                                margin: 0;
+                                        }
 
         .subtitle-container{
                 position: absolute;

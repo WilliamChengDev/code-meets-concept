@@ -203,7 +203,26 @@ function Hero() {
                                 </div>
                         </div>
                         <div className='terminal-section-container'>
-                                <div className='terminal-buttons'></div>
+                                <div className='terminal-topbar'>
+                                        <div className='terminal-topbar-text'>Problems</div>
+                                        <div className='terminal-topbar-text'>Output</div>
+                                        <div className='terminal-topbar-text'>Debug Console</div>
+                                        <div className='terminal-button-container'>
+                                                <div className='terminal-button-text'>Terminal</div>
+                                                <div className='terminal-button-bar'></div>
+                                        </div>
+                                        <div className='terminal-topbar-text'>Ports</div>
+                                </div>
+                                <div className='terminal-text-container'>
+                                        <div className='terminal-text-left'>
+                                                <div className='circle'></div>
+                                                <h1>PS C:\Code\Project\Enter</h1>
+                                        </div>
+                                        <div className='terminal-text-right'>
+                                                <h1>Scroll to Enter</h1>
+                                                <div className='terminal-rectangle'></div>
+                                        </div>
+                                </div>
                         </div>
                 </div>
                 <div className='subtitle-container' ref={subtitleRef}>
