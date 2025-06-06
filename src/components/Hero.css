@@ -33,6 +33,7 @@
                                 position: relative;
                                 justify-content: center;
                                 align-items: center;
+                                user-select: none;
                         }
 
                                 .topbar-tab-title{
@@ -105,9 +106,9 @@
                                         color: var(--medium);
                                         padding: 0.2rem 0.2rem 0rem 0.2rem; /* padding-top, padding-right, padding-bottom, padding-left */
                                         font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
-                                        user-select: none;
                                         white-space: nowrap;
                                         overflow: hidden;
+                                        user-select: none;
                                 }
 
                                 /* Only special line uses flex to split text vs. dash‐filler: */
@@ -174,6 +175,7 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        user-select: none;
                 }
 
                         .terminal-topbar{
@@ -221,14 +223,9 @@
                                                 background-color: var(--light);
                                         }
 
-                                .terminal-text-container{
-                                        width: 95%;
-                                        height: 100%;
-                                        display: flex;
-                                        flex-direction: row;
-                                }
-
                         .terminal-text-container{
+                                width: 95%;
+                                height: 100%;
                                 display: flex;
                                 flex-direction: row;
                                 align-items: center;
@@ -242,6 +239,14 @@
                                         flex-direction: row;
                                         align-items: center;
                                 }
+
+                                        .circle{
+                                                width: clamp(0.2rem, 2vw, 1.2rem);
+                                                height: clamp(0.2rem, 2vw, 1.2rem);
+                                                border-radius: 50%;
+                                                margin-right: 2vw;
+                                                outline: clamp(0.05rem, 0.5vw, 0.2rem) solid var(--medium);
+                                        }
 
                                         .terminal-text-left h1{
                                                 font-family: JetbrainsMono-Regular;
@@ -266,6 +271,14 @@
                                                 margin: 0;
                                         }
 
+                                        .terminal-rectangle {
+                                                width: 2vw;
+                                                height: 32%;
+                                                background-color: var(--medium);
+                                                /* margin-bottom: .5vh; */
+                                                margin: 0 0 0.4vh 1vw
+                                        }
+
         .subtitle-container{
                 position: absolute;
                 width: 100%;
@@ -273,6 +286,7 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
+                user-select: none;
 
         }
 
@@ -293,7 +307,8 @@
                 font-family: GeneralSans-Semibold;
                 letter-spacing: 0.1vw;
                 color: var(--light);
-                right: 0;
+                right: 1.9vw;
+                user-select: none;
         }
 
         .cheng{
@@ -301,5 +316,6 @@
                 font-family: GeneralSans-Semibold;
                 letter-spacing: 0.1vw;
                 color: var(--light);
-                right: 0;
+                right: 1.9vw;
+                user-select: none;
         }
