@@ -90,7 +90,7 @@
                         
                         .number-editor-bar{
                                 min-width: .2%;
-                                height: 100%;
+                                height: 500%;
                                 background-color: var(--medium);
                         }
 
@@ -101,15 +101,22 @@
                                 display: inline-block;
                         }
 
-                                .editor-container div{
+                                .editor-container div{ 
                                         font-family: JetbrainsMono-Regular;
                                         color: var(--medium);
                                         padding: 0.2rem 0.2rem 0rem 0.2rem; /* padding-top, padding-right, padding-bottom, padding-left */
                                         font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
-                                        white-space: nowrap;
+                                        white-space: pre;
                                         overflow: hidden;
                                         user-select: none;
                                 }
+
+                                .indent1{ margin-left: 5vw; }
+                                .indent2{ margin-left: 10vw; }
+                                .indent3{ margin-left: 15vw; }
+                                .indent4{ margin-left: 20vw; }
+                                .indent5{ margin-left: 25vw; }
+
 
                                 /* Only special line uses flex to split text vs. dash‐filler: */
                                 .code-with-effect {
@@ -127,7 +134,7 @@
                                         /*SPECIAL TEXT EFFECTS--------------------------------------------------------------------------------------------------------------------------------*/
                                         /* This empty <span> will stretch to fill “remaining” width: */
                                         .dash-fill {
-                                                flex-grow: 1;
+                                                /* flex-grow: 1; */
                                                 white-space: nowrap;
                                         }
 
@@ -169,6 +176,7 @@
                                         }
                                                                 
                 .terminal-section-container{
+                        margin-top: 0%;
                         width: 100%;
                         height: 17vh;
                         background-color: var(--dark);
