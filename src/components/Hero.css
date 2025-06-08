@@ -5,6 +5,7 @@
         margin: 0;          /* just in case */
         padding: 0;         /* make sure there’s no extra space inside */
         z-index: 0;
+        overflow: hidden;
 }
 
         .code-editor-container{

@@ -11,3 +11,11 @@ section#hero {
   justify-content: center;
   background-color: var(--dark);
 }
+
+section#projects {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+}

@@ -1,0 +1,10 @@
+.projects-container{
+        position: relative;
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0;          /* just in case */
+        padding: 0;         /* make sure there’s no extra space inside */
+        z-index: 0;
+        overflow: hidden;
+        background-color: red;
+}
