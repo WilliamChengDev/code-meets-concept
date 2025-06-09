@@ -9,7 +9,8 @@ section#hero {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--dark);
+  background-color: var(--light);
+  overflow: hidden;
 }
 
 section#projects {
@@ -18,4 +19,5 @@ section#projects {
   align-items: center;
   justify-content: center;
   background-color: red;
+  overflow: hidden;
 }

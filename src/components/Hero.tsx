@@ -1,5 +1,5 @@
 import './Hero.css';
-import { useLayoutEffect, useRef } from 'react';
+import { forwardRef, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 import { TextPlugin } from "gsap/TextPlugin";
@@ -7,7 +7,15 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP, ScrambleTextPlugin, TextPlugin);
 
-function Hero() {
+//strongly type getTimeline return type
+export interface HeroHandles {
+        getTimeline: () => gsap.core.Timeline;
+}
+
+//use forwardRef to allow the functional object to take props and have refs
+//props: parent -> child state, reloads node on change
+//refs: allows outside objects to access inside refs
+const Hero = forwardRef<HeroHandles, {}>((props, ref) => {
 
         const line11Ref = useRef<HTMLDivElement>(null); //for subtitle position
         const line13Ref = useRef<HTMLDivElement>(null); //for William position
@@ -18,7 +26,35 @@ function Hero() {
         const editorContainerRef = useRef<HTMLDivElement>(null); //contains all lines of editor code
         const lineRef = useRef<HTMLDivElement>(null); //for the height of a line
 
+        const transitionTl = useRef(gsap.timeline({paused: false}));
+
+        //animations
         useGSAP(() => {
+                //code editor
+                transitionTl.current
+                .to(".animated-line",{duration: 3, translateY: "1rem", ease: "power2.out", opacity: 0, stagger:.2})
+                .to(".numbered-lines-container div", {duration: 3, translateY: "1rem", ease: "power2.out", opacity:0, stagger:-.2}, "<")
+                .to(".number-editor-bar", {duration: 10, height:'0%', ease:'power2.out'}, '<')
+
+                //topbar
+                .to(".topbar-tab-highlight", {duration: 3, width: '0%'}, "<")
+                .to(".topbar-tab-title", {duration: 3, opacity:0}, "<")
+                .to(".topbar-tab-title", {duration: 2, height: 0}, "<")
+                .to(".topbar-container", {opacity: 0}, "<1")
+
+                //title/subtitle
+                .to(".william", {duration: 5, translateY: '3rem', opacity:0, ease: "power2.out"}, "<-14")
+                .to(".subtitle-container", {duration: 5, translateX: '3rem', opacity: 0, ease: "power2.out"}, "<")
+                .to(".cheng", {duration: 5, translateY: '3rem', opacity:0, ease: "power2.out"}, "<")
+
+                //terminal
+                .to(".terminal-text-left h1", {duration: 10, scrambleText: {text: "", speed: 0.5}}, "<5")
+                .to(".terminal-section-container", {duration: 7, translateY: "10rem", ease: "power2.out" }, "<1")  //terminal window glide-in
+
+                //background color change
+                .to(".hero-container", {duration: 15, backgroundColor: '#cfcfcf'})
+                .to(".hero-container", {display: 'none'})
+
 
                 let rectangleBlink = gsap.timeline({repeat: -1}); //terminal-text-rectangle blink
                         rectangleBlink.to(".terminal-rectangle", { duration: 2, opacity: 0, yoyo: true, ease: "power2.inOut"})
@@ -30,10 +66,17 @@ function Hero() {
                         .from(".terminal-section-container", { duration:3, marginTop:"1000px", ease: "power2.inOut" }, "<")  //terminal window glide-in
 
                 let codeEditor = gsap.timeline(); //code editor animations
-                        codeEditor.from(".animated-line", {duration: 3, text: ""})
+                codeEditor.from(".animated-line", {duration: 3, text: ""})
+                        
 
         }) //Optional: can add scope at the end here
 
+        //pass transitionTimeline to parent
+        useImperativeHandle(ref, () => ({
+                getTimeline: () => transitionTl.current //typed by `export interface HeroHandles`
+        }));
+
+        //position calculations
         const updateOverlay = () => {
                 if (
                         !line11Ref.current ||
@@ -61,10 +104,10 @@ function Hero() {
                 const gapPx = line18Rect.top - line13Rect.bottom; // Calculate the gap between line 13 and line 18
                 const williamTopPx = line13Rect.bottom - lineHeight / 2; // Center the "William" text vertically on line 13
                 const williamTopBias = 0.93
-                const williamSizeBias = 1.7
+                const williamSizeBias = 1.5
                 const chengTopPx = line18Rect.bottom - lineHeight / 2; // Center the "Cheng" text vertically on line 23
-                const chengSizeBias = 1.65
-                const chengTopBias = 0.95
+                const chengSizeBias = 1.45
+                const chengTopBias = 0.98
 
                 const lines = editorContainerRef.current.querySelectorAll<HTMLDivElement>('div'); //select all child divs
             
@@ -87,11 +130,11 @@ function Hero() {
                 })
 
                 //debug
-                console.log("line13Bottom", line13Rect.bottom);
-                console.log("line18Top", line18Rect.top);
-                console.log("lineHeight", lineHeight);
-                console.log("williamTopPx", williamTopPx);
-                console.log("gapPx", gapPx);
+                // console.log("line13Bottom", line13Rect.bottom);
+                // console.log("line18Top", line18Rect.top);
+                // console.log("lineHeight", lineHeight);
+                // console.log("williamTopPx", williamTopPx);
+                // console.log("gapPx", gapPx);
         };
 
         useLayoutEffect(() => {
@@ -127,7 +170,7 @@ function Hero() {
                         </div>
                         <div className='code-section-container'>
                                 <div className='numbered-lines-container'>
-                                        {Array.from({ length: 70 }, (_, i) => (
+                                        {Array.from({ length: 60 }, (_, i) => (
                                                 i == 0 ? <div key={"num" + i} ref={lineRef}>{"0" + (i + 1)}</div> :
                                                         i < 9 ? <div key={"num" + i}>{"0" + (i + 1)}</div> : <div key={"num" + i}>{i + 1}</div>
                                         ))}
@@ -145,58 +188,62 @@ function Hero() {
                                         <div className='animated-line indent1'>{"<React.StrictMode>"}</div> {/* Use nbsp as space since whitespace: nowrap */}
                                         <div className='animated-line indent2'>{"<App/>"}</div>
                                         <div className='animated-line indent1'>{"</React.StrictMode>"}</div>
-                                        <div>{")"}</div>
+                                        <div className='animated-line'>{")"}</div>
 
                                         <div className='animated-line' ref={line11Ref}>{"//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"}</div>
                                         <div className='animated-line'>{"export default function App() {"}</div>
 
                                         <div className='animated-line' ref={line13Ref}>{"//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"}</div>
 
+                                        <div className='animated-line'>{"//++++++++++++++++++++++++/++++++++++++++++++++++++/"}</div>
+                                        
                                         <div className="code-with-effect">
-                                                <span>{"//"}</span>
-                                                <span className='plus-seg'></span>
-                                                <span className='plus-seg'></span>
+                                                <span className='animated-line'>{"//"}</span>
+                                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                <span className='animated-line'>{"/"}</span>
+                                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                <span className='animated-line'>{"/"}</span>
                                         </div>
                                         <div className="code-with-effect">
-                                                <span>{"//"}</span>
-                                                <span className='blank-seg'></span>
-                                                <span className='blank-seg'></span>
-                                        </div>
+                                                <span className='animated-line'>{"//"}</span>
+                                                <span className='animated-line'>{"++++++++++++++++++++++++/"}</span>
+                                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                <span className='animated-line'>{"/"}</span>
+                                        </div>     
                                         <div className="code-with-effect">
-                                                <span>{"//"}</span>
-                                                <span className='min-seg'></span>
-                                                <span className='blank-seg'></span>
-                                        </div>
-                                        <div className="code-with-effect">
-                                                <span>{"//"}</span>
-                                                <span className='blank-seg'></span>
-                                                <span className='star-seg'></span>
+                                                <span className='animated-line'>{"//"}</span>
+                                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                <span className='animated-line'>{"/"}</span>
+                                                <span className='animated-line'>{"************************/"}</span>
                                         </div>
                                         <div className='code-with-effect'>
-                                                <div className='animated-line' ref={line18Ref}>//------------------------/</div>
-                                                <div className='animated-line'>/-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
+                                                <span className='animated-line'>{"//"}</span>
+                                                <span className='animated-line' ref={line18Ref}>{"------------------------/"}</span>
+                                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                <div className='animated-line'>{"/-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"}</div>
                                         </div>
                                         <div className="code-with-effect">
-                                                <span>{"//"}</span>
-                                                <span className='min-seg'></span>
-                                                <span className='min-seg'></span>
+                                                <span className='animated-line'>{"//"}</span>
+                                                <span className='animated-line'>{"------------------------/"}</span>
+                                                <span className='animated-line'>{"------------------------/"}</span>
                                         </div>
                                         <div className="code-with-effect">
-                                                <span>{"//"}</span>
-                                                <span className='star-seg'></span>
-                                                <span className='blank-seg'></span>
-                                                <span className='plus-seg'></span>
+                                                <span className='animated-line'>{"//"}</span>
+                                                <span className='animated-line'>{"************************/"}</span>                                             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                <span className='animated-line'>{"/"}</span>
+                                                <span className='animated-line'>{"++++++++++++++++++++++++/"}</span>
                                         </div>
                                         <div className="code-with-effect">
-                                                <span>{"//"}</span>
-                                                <span className='blank-seg'></span>
-                                                <span className='min-seg'></span>
-                                                <span className='min-seg'></span>
+                                                <span className='animated-line'>{"//"}</span>
+                                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                <span className='animated-line'>{"/"}</span>
+                                                <span className='animated-line'>{"------------------------/"}</span>
+                                                <span className='animated-line'>{"------------------------/"}</span>
                                         </div>
                                         <div className="code-with-effect">
-                                                <span>{"//"}</span>
-                                                <span className='plus-seg'></span>
-                                                <span className='plus-seg'></span>
+                                                <span className='animated-line'>{"//"}</span>
+                                                <span className='animated-line'>{"++++++++++++++++++++++++/"}</span>
+                                                <span className='animated-line'>{"++++++++++++++++++++++++/"}</span>
                                         </div>
                                         <div className='animated-line'>{"//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"}</div>
 
@@ -209,7 +256,7 @@ function Hero() {
                                         <div className='animated-line indent4'>{"<Loader/>"}</div>
                                         <div className='animated-line indent4'>{"<TopRow/>"}</div>
                                         <div className='animated-line indent4'>{"<Home/>"}</div>
-                                        <div className='animated-line indent4'>{"<Page1Blender/>"}</div>
+                                        <div className='animated-line indent4'>{'<Page1Blender/>'}</div>
                                         <div className='animated-line indent3'>{"</div>"}</div>
                                         <div className='animated-line indent2'>{"</>"}</div>
                                         <div className='animated-line indent1'>{")"}</div>
@@ -247,6 +294,6 @@ function Hero() {
                 <div className='cheng' ref={chengRef}>Loading...</div>
         </div>
         );
-}
+})
 
 export default Hero;

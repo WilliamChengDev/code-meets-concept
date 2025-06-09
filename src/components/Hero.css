@@ -6,6 +6,7 @@
         padding: 0;         /* make sure there’s no extra space inside */
         z-index: 0;
         overflow: hidden;
+        background-color: var(--dark);
 }
 
         .code-editor-container{
@@ -64,7 +65,6 @@
                 .code-section-container{
                         width: 100%;
                         height: 80vh;
-                        background-color: var(--dark);
                         position: static;
                         display: flex;
                         flex-direction: row;  
@@ -74,7 +74,6 @@
                                 max-width: 3%;
                                 width: fit-content;
                                 height: 100%;
-                                background-color: var(--dark);
                                 display: inline-block;
                                 flex-direction: column;
                         }
@@ -91,14 +90,13 @@
                         
                         .number-editor-bar{
                                 min-width: .2%;
-                                height: 500%;
+                                height: 150%;
                                 background-color: var(--medium);
                         }
 
                         .editor-container{
                                 width: 100%;
                                 height: 100%;
-                                background-color: var(--dark);
                                 display: inline-block;
                         }
 
@@ -131,51 +129,7 @@
                                         .code-with-effect div{
                                                 padding: 0;
                                         }
-
-                                        /*SPECIAL TEXT EFFECTS--------------------------------------------------------------------------------------------------------------------------------*/
-                                        /* This empty <span> will stretch to fill “remaining” width: */
-                                        .dash-fill {
-                                                /* flex-grow: 1; */
-                                                white-space: nowrap;
-                                        }
-
-                                        /* 4) Insert a bunch of dashes via CSS content (on a pseudo‐element) */
-                                        .dash-fill::before {
-                                                content: "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
-                                        }
-
-                                        .plus-seg{
-                                                white-space: nowrap;
-                                        }
-
-                                        .plus-seg::before {
-                                                content: " ++++++++++++++++++++++++/";
-                                        }
-
-                                        .star-seg{
-                                                white-space: nowrap;
-                                        }
-
-                                        .star-seg::before {
-                                                content: " ************************/";
-                                        }
-
-                                        .min-seg{
-                                                white-space: nowrap;
-                                        }
-
-                                        .min-seg::before {
-                                                content: " ------------------------/";
-                                        }
-
-                                        .blank-seg{
-                                                white-space: nowrap;
-                                        }
-                                        
-                                        .blank-seg::before {
-                                                content: "  \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0/";
-                                        }
-                                                                
+                                   
                 .terminal-section-container{
                         margin-top: 0%;
                         width: 100%;
@@ -284,7 +238,6 @@
                                                 width: 2vw;
                                                 height: 32%;
                                                 background-color: var(--medium);
-                                                /* margin-bottom: .5vh; */
                                                 margin: 0 0 0.4vh 1vw
                                         }
 
