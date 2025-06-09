@@ -17,6 +17,9 @@ export interface HeroHandles {
 //refs: allows outside objects to access inside refs
 const Hero = forwardRef<HeroHandles, {}>((props, ref) => {
 
+        const lockScroll   = () => { document.body.style.overflow = 'hidden'; }; //to lock + unlock scroll on intro animation
+        const unlockScroll = () => { document.body.style.overflow = ''; };
+
         const line11Ref = useRef<HTMLDivElement>(null); //for subtitle position
         const line13Ref = useRef<HTMLDivElement>(null); //for William position
         const line18Ref = useRef<HTMLDivElement>(null); //for Cheng position
@@ -30,11 +33,13 @@ const Hero = forwardRef<HeroHandles, {}>((props, ref) => {
 
         //animations
         useGSAP(() => {
+                lockScroll();
+
                 //code editor
                 transitionTl.current
                 .to(".animated-line",{duration: 3, translateY: "1rem", ease: "power2.out", opacity: 0, stagger:.2})
-                .to(".numbered-lines-container div", {duration: 3, translateY: "1rem", ease: "power2.out", opacity:0, stagger:-.2}, "<")
-                .to(".number-editor-bar", {duration: 10, height:'0%', ease:'power2.out'}, '<')
+                .to(".numbered-lines-container div", {duration: 3, translateY: "1rem", ease: "power2.out", opacity:0, stagger:-.05}, "<")
+                .to(".number-editor-bar", {duration: 7, height:'0%', ease:'power2.out'}, '<')
 
                 //topbar
                 .to(".topbar-tab-highlight", {duration: 3, width: '0%'}, "<")
@@ -43,23 +48,23 @@ const Hero = forwardRef<HeroHandles, {}>((props, ref) => {
                 .to(".topbar-container", {opacity: 0}, "<1")
 
                 //title/subtitle
-                .to(".william", {duration: 5, translateY: '3rem', opacity:0, ease: "power2.out"}, "<-14")
+                .to(".william", {duration: 5, translateY: '3rem', opacity:0, ease: "power2.out"}, "<-5")
                 .to(".subtitle-container", {duration: 5, translateX: '3rem', opacity: 0, ease: "power2.out"}, "<")
                 .to(".cheng", {duration: 5, translateY: '3rem', opacity:0, ease: "power2.out"}, "<")
 
                 //terminal
-                .to(".terminal-text-left h1", {duration: 10, scrambleText: {text: "", speed: 0.5}}, "<5")
-                .to(".terminal-section-container", {duration: 7, translateY: "10rem", ease: "power2.out" }, "<1")  //terminal window glide-in
+                .to(".terminal-text-left h1", {duration: 20, scrambleText: {text: "", speed: 0.5}}, "<")
+                .to(".terminal-section-container", {duration: 20, translateY: "10rem", ease: "power2.out" }, "<1")  //terminal window glide-in
 
                 //background color change
-                .to(".hero-container", {duration: 15, backgroundColor: '#cfcfcf'})
-                .to(".hero-container", {display: 'none'})
+                .to(".hero-container", {duration: 15, backgroundColor: '#cfcfcf', opacity:0, ease:"power2.in"}, '2')
+                // .to(".hero-container", {duration: 15, opacity: 0}, '<')
 
 
                 let rectangleBlink = gsap.timeline({repeat: -1}); //terminal-text-rectangle blink
                         rectangleBlink.to(".terminal-rectangle", { duration: 2, opacity: 0, yoyo: true, ease: "power2.inOut"})
 
-                let heroIn = gsap.timeline(); //hero intro animation line
+                let heroIn = gsap.timeline({onComplete: unlockScroll}); //hero intro animation line
                         heroIn.to(".william", { duration: 2, scrambleText: { text: "William", revealDelay: 0, speed: 0.5, } }, "<") //title scramble
                         .to(".cheng", { duration: 2, scrambleText: { text: "Cheng", revealDelay: 0, speed: 0.5, } }, "<") //title scramble
                         .to(".subtitle-text", { duration: 2, scrambleText: { text: "Code Meets Concept", revealDelay: 0, speed: 0.5, } }, "<") //subtitle scramble
@@ -67,7 +72,6 @@ const Hero = forwardRef<HeroHandles, {}>((props, ref) => {
 
                 let codeEditor = gsap.timeline(); //code editor animations
                 codeEditor.from(".animated-line", {duration: 3, text: ""})
-                        
 
         }) //Optional: can add scope at the end here
 

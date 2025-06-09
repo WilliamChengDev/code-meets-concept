@@ -34,8 +34,8 @@ function App() {
                         scrollTrigger:{
                                 trigger:   '#hero',
                                 start:     'top top', //trigger element's top edge, viewport top edge
-                                end:       'bottom+=200% top', // three full viewport scrolls
-                                scrub:     true,
+                                end:       'bottom+=700% top', // three full viewport scrolls
+                                scrub:     0.5,
                                 pin:       true,              // set to true if you want to pin
                                 markers: false, //debugging
                         }
