@@ -53,7 +53,7 @@ const Hero = forwardRef<HeroHandles, {}>((props, ref) => {
                 .to(".cheng", {duration: 5, translateY: '3rem', opacity:0, ease: "power2.out"}, "<")
 
                 //terminal
-                .to(".terminal-text-left h1", {duration: 20, scrambleText: {text: "", speed: 0.5}}, "<")
+                .to(".terminal-text-left h1", {duration: 20, scrambleText: {text: "", speed: 0.5}, delay:0.1}, "<")
                 .to(".terminal-section-container", {duration: 20, translateY: "10rem", ease: "power2.out" }, "<1")  //terminal window glide-in
 
                 //background color change

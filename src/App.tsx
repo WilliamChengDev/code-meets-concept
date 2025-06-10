@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import './App.css'
+import Navbar, {type NavbarHandles} from './components/Navbar'
 import Hero, { type HeroHandles } from './components/Hero'
 import Projects from './components/Projects'
 import gsap from 'gsap';
@@ -8,23 +9,31 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  
-  const heroRef     = useRef<HeroHandles>(null);
+
+        const heroRef = useRef<HeroHandles>(null);
+        const navbarRef = useRef<NavbarHandles>(null);
 
         //useEffect loads after useLayoutEffect in children; guarantees timelines in children are built
         useEffect(() => {
 
+                //hero page animation
                 const heroHandles = heroRef.current;
                 const heroTl = heroHandles?.getTimeline();
 
+                //navbar animation
+                const navbarHandles = navbarRef.current;
+                const navbarTl = navbarHandles?.getTimeline();
+
                 //debug
-                // console.log('heroRef.current:', heroHandles);
-                // console.log('heroTl:', heroTl);
-                // console.log('heroTl children count:', heroTl?.getChildren().length);
+                // console.log('navbarRef.current:', navbarHandles);
+                // console.log('navbarTl:', navbarTl);
+                // console.log('navbarTl children count:', navbarTl?.getChildren().length);
 
                 if(
                         !heroTl ||
-                        heroTl.getChildren().length === 0
+                        heroTl.getChildren().length === 0 ||
+                        !navbarTl ||
+                        navbarTl.getChildren().length === 0
                 ) {
                         return;
                 }
@@ -37,12 +46,17 @@ function App() {
                                 end:       'bottom+=700% top', // three full viewport scrolls
                                 scrub:     0.5,
                                 pin:       true,              // set to true if you want to pin
-                                markers: false, //debugging
+                                markers: true, //debugging
                         }
                 });
 
                 //add hero transition timeline
-                master.add(heroTl, 0);
+                master.add(heroTl);
+                master.add(navbarTl);
+
+                console.log('master.duration()', master.duration());
+                console.log('heroTl.duration()', heroTl.duration());
+                console.log('navbarTl.duration()', navbarTl.duration());
 
                 //cleanup on unmount
                 return () => ScrollTrigger.getAll().forEach(st => st.kill());
@@ -50,6 +64,7 @@ function App() {
 
         return (
                 <div className='app-container'>
+                        <Navbar ref = { navbarRef }/>
                         <section id='hero'><Hero ref = { heroRef }/></section>
                         <section id='projects'><Projects /></section>
                 </div>
