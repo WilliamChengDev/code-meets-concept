@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Projects.css'
+import ProjectPanel from './ProjectPanel';
 
 function Projects(){
 
@@ -22,11 +23,11 @@ function Projects(){
 
         return(
                 <div className='projects-container'>
-                        <div className='windows-container'></div>
+                        <div className='windows-container'>
+                                <ProjectPanel/>
+                        </div>
                         <div className='bottom-row-container'>
-                                <div className='clock'>
-                                        {now.toLocaleTimeString()}
-                                </div>
+                                <div className='clock'>{now.toLocaleTimeString()}</div>
                                 <div className='project-tracker'></div>
                                 <div className='about-me-button'></div>
                         </div>

@@ -16,7 +16,8 @@
         .windows-container{
                 width: 95.4%;
                 height: 80.3%;
-                background-color: aqua;
+                background-color: var(--light);
+                position: relative;
         }
 
         .bottom-row-container{
@@ -33,7 +34,13 @@
                 .clock{
                         height: 100%;
                         aspect-ratio: 1/1;
-                        background-color: blue;
+                        background-color: var(--light);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        text-align: center;
+                        font-family: Jetbrainsmono-Regular;
+                        font-size: clamp(0.7rem, .9vw, 2rem); /*min preferred max*/
                 }
 
                 .project-tracker{

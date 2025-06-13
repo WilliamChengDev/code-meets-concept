@@ -1,0 +1,129 @@
+.project-panel-container{
+        height: 120%;
+        /* width: 50%; */
+        left: 25%;
+        top: 8%;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        overflow: hidden;
+        filter: drop-shadow(-.2rem .2rem 0.2rem rgba(0, 0, 0, 0.4));
+}
+
+        .project-topbar-container{
+                position: static;
+                height: fit-content;
+                width: 100%;
+                background-color: var(--medium);
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+        }
+
+                .project-topbar-tab{
+                        height: fit-content;
+                        width: 20%;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        justify-content: center;
+                        align-items: center;
+                        user-select: none;
+                }
+
+                        .project-topbar-tab-title{
+                                width: 100%;
+                                height: 3vh;
+                        }
+
+                        .project-topbar-tab-title h1{
+                                font-family: 'JetbrainsMono-Regular';
+                                color: var(--blue);
+                                margin: 0.3rem;
+                                text-align: center;
+                                font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                        }
+
+                        .project-topbar-tab-highlight{
+                                width: 100%;
+                                height: 0.35vh;
+                                background-color: var(--blue);
+                        }
+
+                .project-topbar-icons{
+                        width: 14%;
+                        background-color: red;
+                }
+
+        .project-code-section-container{
+                width: 100%;
+                height: 50%;
+                position: static;
+                display: flex;
+                flex-direction: row;  
+                overflow: hidden;
+                background-color: var(--dark);
+        }
+
+                .project-numbered-lines-container{
+                        max-width: 3vw;
+                        width: fit-content;
+                        height: 100%;
+                        display: inline-block;
+                        flex-direction: column;
+                }
+
+                        .project-numbered-lines-container div{
+                                font-family: JetbrainsMono-Regular;
+                                color: var(--light);
+                                padding-top: 0.2rem;
+                                padding-left: 0.2rem;
+                                padding-right: 0.2rem;
+                                font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                user-select: none;
+                        }
+                
+                .project-number-editor-bar{
+                        min-width: .4%;
+                        height: 100%;
+                        background-color: var(--medium);
+                }
+
+                .project-editor-container{
+                        width: 100%;
+                        height: 100%;
+                        display: inline-block;
+                }
+
+        .project-terminal-section-container{
+                margin-top: 0%;
+                width: 100%;
+                height: 17%;
+                background-color: var(--dark);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                user-select: none;
+        }
+
+                .project-terminal-topbar-text{
+                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                        width: fit-content;
+                        font-family: JetbrainsMono-Regular;
+                        color: var(--light);
+                        margin: 0;
+                        padding: 0 2vw .3vh 2vw;
+                        opacity: 0.25;
+                }
+
+                .project-terminal-button-text{
+                        opacity: 1;
+                        height: 100%;
+                        color: var(--light);
+                        font-family: JetbrainsMono-Regular;
+                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                        padding: 0 2vw 0 2vw;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                }
