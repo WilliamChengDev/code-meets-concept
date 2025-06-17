@@ -28,7 +28,6 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
-                background-color: red;
         }
 
                 .clock{
@@ -46,8 +45,16 @@
                 .project-tracker{
                         height: 100%;
                         width: 40%;
-                        background-color: blue;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
                 }
+
+                        .project-tracker div{
+                                font-family: JetbrainsMono-Regular;
+                                font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                padding: 2vw;
+                        }
 
                 .about-me-button{
                         height: 100%;

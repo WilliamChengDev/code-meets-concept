@@ -1,6 +1,6 @@
 .project-panel-container{
         height: 120%;
-        /* width: 50%; */
+        width: 50%;
         left: 25%;
         top: 8%;
         display: flex;
@@ -90,10 +90,20 @@
                 }
 
                 .project-editor-container{
-                        width: 100%;
+                        width: fit-content;
                         height: 100%;
                         display: inline-block;
                 }
+
+                        .project-editor-line{
+                                width: fit-content;
+                                font-family: JetbrainsMono-Regular;
+                                color: var(--medium);
+                                padding: 0.2rem 0.2rem 0 0.2rem; /*top right bottom left*/
+                                font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                user-select: none;
+                                text-wrap: nowrap;
+                        }
 
         .project-terminal-section-container{
                 margin-top: 0%;
@@ -106,24 +116,69 @@
                 user-select: none;
         }
 
-                .project-terminal-topbar-text{
-                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
-                        width: fit-content;
-                        font-family: JetbrainsMono-Regular;
-                        color: var(--light);
-                        margin: 0;
-                        padding: 0 2vw .3vh 2vw;
-                        opacity: 0.25;
-                }
+                        .project-terminal-topbar-text{
+                                font-size: clamp(0.5rem, 1.3vw, .7rem); /*min preferred max*/
+                                width: fit-content;
+                                font-family: JetbrainsMono-Regular;
+                                color: var(--light);
+                                margin: 0;
+                                padding: 0 2vw .3vh 2vw;
+                                opacity: 0.25;
+                        }
 
-                .project-terminal-button-text{
-                        opacity: 1;
+                        .project-terminal-button-text{
+                                opacity: 1;
+                                height: 100%;
+                                color: var(--light);
+                                font-family: JetbrainsMono-Regular;
+                                font-size: clamp(0.5rem, 1.3vw, .7rem); /*min preferred max*/
+                                padding: 0 2vw 0 2vw;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                        }
+
+                .project-terminal-text-container{
+                        width: 95%;
                         height: 100%;
-                        color: var(--light);
-                        font-family: JetbrainsMono-Regular;
-                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
-                        padding: 0 2vw 0 2vw;
                         display: flex;
-                        justify-content: center;
+                        flex-direction: row;
                         align-items: center;
                 }
+
+                        .project-terminal-text{
+                                width: 45vw;
+                                height: fit-content;
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                        }
+
+                                .project-terminal-text h1{
+                                        width: 100%;
+                                        height: fi;
+                                        font-family: JetbrainsMono-Regular;
+                                        color: var(--green);
+                                        font-size: clamp(0.5rem, 2.5vw, 1rem); /*min preferred max*/
+                                        margin: 0;
+                                        text-wrap: nowrap;
+                                }
+
+                                .project-circle{
+                                        width: clamp(0.2rem, 2vw, 0.7rem);
+                                        height: clamp(0.2rem, 2vw, 0.7rem);
+                                        border-radius: 50%;
+                                        margin: 0vw 2vw 0 1vw;
+                                        outline: clamp(0.05rem, 0.5vw, 0.2rem) solid var(--medium);
+                                        aspect-ratio: 1/1;
+                                }
+
+                                .project-description{
+                                        width: fit-content;
+                                        height: fit-content;
+                                        display: flex;
+                                        align-items: flex-start;
+                                        font-family: JetbrainsMono-Regular;
+                                        color: var(--light);
+                                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                }

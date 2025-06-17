@@ -8,8 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger);
 
-function App() {
-
+export default function App() {
         const heroRef = useRef<HeroHandles>(null);
         const navbarRef = useRef<NavbarHandles>(null);
 
@@ -70,5 +69,3 @@ function App() {
                 </div>
         )
 }
-
-export default App
