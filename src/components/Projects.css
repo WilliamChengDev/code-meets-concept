@@ -18,6 +18,8 @@
                 height: 80.3%;
                 background-color: var(--light);
                 position: relative;
+                display: inline-block;
+                overflow: hidden;
         }
 
         .bottom-row-container{
@@ -60,4 +62,13 @@
                         height: 100%;
                         aspect-ratio: 1/1;
                         background-color: blue;
+                }
+
+                #project-panel1{
+                        right: 30%;
+                }
+
+                #project-panel2{
+                        right: 0%;
+                        top: 10%;
                 }

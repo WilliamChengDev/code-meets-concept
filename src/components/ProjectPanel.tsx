@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
 import './ProjectPanel.css'
 
-const ProjectPanel = forwardRef<unknown, {title: string, paragraph: string, description: string }>((props, ref) => {
+const ProjectPanel = forwardRef<unknown, {id: string, title: string, paragraph: string, description: string }>((props, ref) => {
 
         const lines = props.paragraph.split(/\r?\n/)
 
         return(
-                <div className='project-panel-container'>
+                <div className='project-panel-container' id={props.id}>
                         <div className='project-topbar-container'> {/* same object as topbar in Hero.tsx */}
                                 <div className='project-topbar-tab'>
                                         <div className='project-topbar-tab-title'>

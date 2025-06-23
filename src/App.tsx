@@ -60,7 +60,7 @@ export default function App() {
                         scrollTrigger: {
                                 trigger: '#projects',
                                 start: 'top top',
-                                end: 'bottom+=100% top',
+                                end: 'bottom+=300% top',
                                 scrub: 0.5,
                                 pin: true, // set to true if you want to pin
                                 markers: true, //debugging
