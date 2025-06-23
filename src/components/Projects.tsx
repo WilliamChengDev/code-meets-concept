@@ -1,8 +1,21 @@
-import { useEffect, useState } from 'react';
+import { forwardRef, useImperativeHandle, useState, useEffect, useRef } from 'react';
 import './Projects.css'
 import ProjectPanel from './ProjectPanel';
+import { gsap } from 'gsap';
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+import { TextPlugin } from "gsap/TextPlugin";
+import { useGSAP } from "@gsap/react";
 
-function Projects(){
+gsap.registerPlugin(useGSAP, ScrambleTextPlugin, TextPlugin);
+
+//strongly type getTimeline return type
+export interface ProjectHandles {
+        getTimeline: () => gsap.core.Timeline;
+}
+
+const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
+
+        const transitionTl = useRef(gsap.timeline({paused: false}));
 
         //state for the 'now' date
         const [now, setNow] = useState<Date>(new Date());
@@ -18,6 +31,17 @@ function Projects(){
                         "A discrete event simulator to compute the queuing times of packets between switches."
                 ]
         ])
+
+        //pass transitionTimeline to parent
+        useImperativeHandle(ref, () => ({
+                getTimeline: () => transitionTl.current //typed by `export interface HeroHandles`
+        }));
+
+        //animations
+        useGSAP(() => {
+                transitionTl.current
+                        .from(".project-panel-container", { translateX: 100, duration: 10, stagger: 0.2})
+        })
 
         useEffect(() => {
 
@@ -35,8 +59,9 @@ function Projects(){
         return(
                 <div className='projects-container'>
                         <div className='windows-container'>
-                                <ProjectPanel title={projectData[0][0]} paragraph={projectData[0][1]} description={projectData[0][2]}/>
-                                <ProjectPanel title={projectData[1][0]} paragraph={projectData[1][1]} description={projectData[1][2]}/>
+                                {projectData.map(project => (
+                                        <ProjectPanel title={project[0]} paragraph={project[1]} description={project[2]} key={project[0]}/>
+                                ))}
                         </div>
                         <div className='bottom-row-container'>
                                 <div className='clock'>{now.toLocaleTimeString()}</div>
@@ -48,6 +73,6 @@ function Projects(){
                         </div>
                 </div>
         );
-}
+})
 
 export default Projects;
