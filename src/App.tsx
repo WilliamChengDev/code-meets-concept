@@ -61,7 +61,8 @@ export default function App() {
                                 trigger: '#projects',
                                 start: 'top top',
                                 end: 'bottom+=300% top',
-                                scrub: 0.5,
+                                // scrub: 0.5,
+                                toggleActions: "play none reverse none",
                                 pin: true, // set to true if you want to pin
                                 markers: true, //debugging
                         }

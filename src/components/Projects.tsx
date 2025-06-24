@@ -43,7 +43,7 @@ const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
         useGSAP(() => {
                 transitionTl.current
                         .from(".bottom-row-container", { opacity: 0, duration: 2, ease: "power2.inOut" })
-                        .from(".project-panel-container", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 2, stagger: 10, ease: "power2.inOut" })
+                        .from(".project-panel-container", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 0.5, stagger:0.1, ease: "power2.inOut" })
         })
 
         useEffect(() => {
@@ -70,6 +70,9 @@ const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
                                 <div className='clock'>{now.toLocaleTimeString()}</div>
                                 <div className='project-tracker'>
                                         <div className='left-bracket'>{"//"}</div>
+                                        {projectData.map((_, index) => (
+                                                <div key={"project-tracker" + index} className='project-name'>{"*"}</div>
+                                        ))}
                                         <div className='right-bracket'>{"//"}</div>
                                 </div>
                                 <div className='about-me-button'></div>
