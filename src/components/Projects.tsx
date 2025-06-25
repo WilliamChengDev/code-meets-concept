@@ -50,18 +50,24 @@ const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
                 transitionTl.current
                         .from(".bottom-row-container", { opacity: 0, duration: 2, ease: "power2.inOut" })
 
-                        .from("#project-panel1", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 0.5, ease: "power2.inOut" })
+                        .from("#project-panel1", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 1.5, ease: "power2.inOut" })
                         .to("#project-tracker1", { scale: 1.1, duration: 0.5, color: "var(--green)", fontWeight:'Bold', ease: "power2.inOut" }, '<')
 
-                        .from("#project-panel2", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 0.5, ease: "power2.inOut" }, '<+=2')
+                        .from("#project-panel2", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 1.5, ease: "power2.inOut" }, '<+=5')
                         .to("#project-panel1", {filter: "blur(0.2rem)", opacity: 1}, '<')
                         .to("#project-tracker1", { scale: 1, duration: 0.5, color: "var(--dark)", fontWeight:'Normal', ease: "power2.inOut" }, '<')
                         .to("#project-tracker2", { scale: 1.1, duration: 0.5, color: "var(--green)", fontWeight:'Bold', ease: "power2.inOut" }, '<')
                         
-                        .from("#project-panel3", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 0.5, ease: "power2.inOut" }, '<+=2')
+                        .from("#project-panel3", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 1.5, ease: "power2.inOut" }, '<+=5')
                         .to("#project-panel2", {filter: "blur(0.2rem)", opacity: 1}, '<')
                         .to("#project-tracker2", { scale: 1, duration: 0.5, color: "var(--dark)", fontWeight:'Normal', ease: "power2.inOut" }, '<')
                         .to("#project-tracker3", { scale: 1.1, duration: 0.5, color: "var(--green)", fontWeight:'Bold', ease: "power2.inOut" }, '<')
+
+                        .to(".project-panel-container", {filter: "none", duration: 5}, '<+=5')
+
+                        {projectData.slice().reverse().map(project => (
+                                transitionTl.current.to(`#project-panel${project[0]}`, { scale: 0.01, opacity: 0, ease:"power2.inOut", duration: 3}, '<+=0.5')
+                        ))}
 
         })              
 

@@ -4,6 +4,7 @@ html, body, #root {
   margin: 0;
   padding: 0;
   background-color: var(--dark);
+  scroll-behavior: auto;
 }
 
 /* hide window scrollbar while maintaining functionality: */

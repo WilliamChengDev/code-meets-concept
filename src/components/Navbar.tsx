@@ -2,6 +2,9 @@ import { forwardRef, useImperativeHandle, useRef } from 'react';
 import './Navbar.css'
 import { gsap } from 'gsap';
 import { useGSAP } from "@gsap/react";
+import ScrollToPlugin from 'gsap/src/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollToPlugin);
 
 
 //strongly type getTimeline return type
@@ -9,7 +12,7 @@ export interface NavbarHandles {
         getTimeline: () => gsap.core.Timeline;
 }
 
-const Navbar = forwardRef<NavbarHandles, {}>((props, ref) => {
+const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref) => {
 
         const transitionTl = useRef(gsap.timeline({paused: false}));
 
@@ -28,7 +31,13 @@ const Navbar = forwardRef<NavbarHandles, {}>((props, ref) => {
         return(
                 <div className='navbar-container'>
                         <div className='navbar'>
-                                <button className='home-button'>{"</>"}</button>
+                                <button className='home-button' onClick={ () => {
+                                        gsap.to(window, {
+                                                duration: 3,
+                                                scrollTo: { y: '#hero', offsetY: 6600 },
+                                                ease: 'power2.inOut'
+                                        })
+                                }}>{"</>"}</button>
                                 <div className='section-buttons-container'>
                                         <button className='projects-button'>{"Projects"}</button>
                                         <button className='art-button'>{"Art"}</button>

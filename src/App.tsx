@@ -60,9 +60,8 @@ export default function App() {
                         scrollTrigger: {
                                 trigger: '#projects',
                                 start: 'top top',
-                                end: 'bottom+=300% top',
+                                end: 'bottom+=1000% top',
                                 scrub: 0.5,
-                                // toggleActions: "play none reverse reverse",
                                 pin: true, // set to true if you want to pin
                                 markers: true, //debugging
                         }
@@ -85,9 +84,23 @@ export default function App() {
                 };
         }, [])
 
+        //scroll normalization
+        useEffect(() => {
+                const handler = (e: WheelEvent) => {
+                        e.preventDefault();
+                        const dir = Math.sign(e.deltaY);             // +1 or -1
+                        const STEP = 25;                            // px per “notch”
+                        window.scrollBy({ top: dir * STEP, behavior: 'auto' });
+                };
+
+                window.addEventListener('wheel', handler, { passive: false });
+                return () => window.removeEventListener('wheel', handler);
+
+        }, [])
+
         return (
                 <div className='app-container'>
-                        <Navbar ref = { navbarRef }/>
+                        <Navbar ref = { navbarRef } hero={heroRef} projects={projectsRef}/>
                         <section id='hero'><Hero ref = { heroRef }/></section>
                         <section id='projects'><Projects ref={ projectsRef } /></section>
                 </div>
