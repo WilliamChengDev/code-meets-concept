@@ -63,9 +63,13 @@ const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
 
                         .to(".project-panel-container", {filter: "none", duration: 5}, '<+=5')
 
+                        .to(".project-tracker", {opacity: 0, duration: 2, ease: "power2.inOut"}, '<+=0.5')
+
                         {projectData.slice().reverse().map(project => (
-                                transitionTl.current.to(`#project-panel${project[0]}`, { scale: 0.01, opacity: 0, ease:"power2.inOut", duration: 3}, '<+=0.5')
+                                transitionTl.current.to(`#project-panel${project[0]}`, { scale: 0.01, opacity: 0, ease:"power2.inOut", duration: 3}, '<')
                         ))}
+                        
+
 
         })          
 

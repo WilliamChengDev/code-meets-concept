@@ -44,7 +44,7 @@
 
         .bottom-bar-container{
                 width: 95.4%;
-                min-height: 12.5%;
+                height: 12.5%;
                 position: static;
                 display: flex;
                 flex-direction: row;
@@ -55,7 +55,6 @@
                 .clock{
                         height: 100%;
                         aspect-ratio: 1/1;
-                        background-color: var(--light);
                         display: flex;
                         flex-direction: column;
                         justify-content: center;

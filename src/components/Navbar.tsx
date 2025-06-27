@@ -53,13 +53,25 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                                         <button className='home-button' onClick={ () => {
                                                 gsap.to(window, {
                                                         duration: 3,
-                                                        scrollTo: { y: '#hero', offsetY: 6600 },
+                                                        scrollTo: { y: 0 },
                                                         ease: 'power2.inOut'
                                                 })
                                         }}>{"</>"}</button>
                                         <div className='section-buttons-container'>
-                                                <button className='projects-button'>{"Projects"}</button>
-                                                <button className='art-button'>{"Art"}</button>
+                                                <button className='projects-button' onClick={() => {
+                                                        gsap.to(window, {
+                                                                duration: 3,
+                                                                scrollTo: { y: 10000 },
+                                                                ease: 'power2.inOut'
+                                                        })
+                                                }}>{"Projects"}</button>
+                                                <button className='art-button' onClick={() => {
+                                                        gsap.to(window, {
+                                                                duration: 3,
+                                                                scrollTo: { y: '#art', offsetY: 0 },
+                                                                ease: 'power2.inOut'
+                                                        })
+                                                }}>{"Art"}</button>
                                                 <button className='skills-button'>{"Skills"}</button>
                                                 <button className='contact-button'>{"Contact"}</button>
                                         </div>
