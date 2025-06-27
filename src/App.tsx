@@ -30,6 +30,10 @@ export default function App() {
                 const projectsHandles = projectsRef.current; 
                 const projectsTl = projectsHandles?.getTimeline();
 
+                //art animation
+                const artHandles = artRef.current;
+                const artTl = artHandles?.getTimeline();
+
                 //debug
                 // console.log('navbarRef.current:', navbarHandles);
                 // console.log('navbarTl:', navbarTl);
@@ -41,7 +45,9 @@ export default function App() {
                         !navbarTl ||
                         navbarTl.getChildren().length === 0 ||
                         !projectsTl ||
-                        projectsTl.getChildren().length === 0
+                        projectsTl.getChildren().length === 0 ||
+                        !artTl ||
+                        artTl.getChildren().length === 0
                 ) {
                         return;
                 }
@@ -69,15 +75,29 @@ export default function App() {
                         }
                 })
 
+                const artMaster = gsap.timeline({
+                        scrollTrigger: {
+                                trigger: '#art',
+                                start: 'top top',
+                                end: 'bottom+=1000% top',
+                                scrub: 0.5,
+                                pin: true, // set to true if you want to pin
+                                markers: true, //debugging
+                        }
+                })
+
                 //add transition timelines
                 heroMaster.add(heroTl);
                 heroMaster.add(navbarTl);
                 projectMaster.add(projectsTl);
+                artMaster.add(artTl);
 
                 console.log('heroMaster.duration()', heroMaster.duration()); // updated to reflect the new variable name
                 console.log('heroTl.duration()', heroTl.duration());
                 console.log('navbarTl.duration()', navbarTl.duration());
                 console.log('projectsTl.duration()', projectsTl.duration());
+                console.log('artMaster.duration()', artMaster.duration());
+                console.log('artTl.duration()', artTl.duration());
 
                 //cleanup on unmount
                 return () => {
