@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useState, useEffect, useRef } from 'react';
+import { forwardRef, useImperativeHandle, useState, useRef } from 'react';
 import './Projects.css'
 import ProjectPanel from './ProjectPanel';
 import { gsap } from 'gsap';
@@ -17,8 +17,6 @@ const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
 
         const transitionTl = useRef(gsap.timeline({paused: false}));
 
-        //state for the 'now' date
-        const [now, setNow] = useState<Date>(new Date());
         const [projectData, setProjectData] = useState([
                 [
                         "1",
@@ -48,7 +46,7 @@ const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
         //animations
         useGSAP(() => {
                 transitionTl.current
-                        .from(".bottom-row-container", { opacity: 0, duration: 2, ease: "power2.inOut" })
+                        .from(".project-tracker", { opacity: 0, duration: 2, ease: "power2.inOut" })
 
                         .from("#project-panel1", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 1.5, ease: "power2.inOut" })
                         .to("#project-tracker1", { scale: 1.1, duration: 0.5, color: "var(--green)", fontWeight:'Bold', ease: "power2.inOut" }, '<')
@@ -69,20 +67,7 @@ const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
                                 transitionTl.current.to(`#project-panel${project[0]}`, { scale: 0.01, opacity: 0, ease:"power2.inOut", duration: 3}, '<+=0.5')
                         ))}
 
-        })              
-
-        useEffect(() => {
-
-                //update per second
-                const id = window.setInterval(() => {
-                        setNow(new Date());
-                }, 1000);
-
-                //Clean up on unmount
-                return () => {
-                        clearInterval(id);
-                };
-        },[])
+        })          
 
         return(
                 <div className='projects-container'>
@@ -91,16 +76,12 @@ const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
                                         <ProjectPanel key= {"project-panel" + project[0]} id={"project-panel" + project[0]} title={project[1]} paragraph={project[2]} description={project[3]} />
                                 ))}
                         </div>
-                        <div className='bottom-row-container'>
-                                <div className='clock'>{now.toLocaleTimeString()}</div>
-                                <div className='project-tracker'>
-                                        <div className='left-bracket'>{"//"}</div>
-                                        {projectData.map((_, index) => (
-                                                <div key={"project-tracker" + index} id={"project-tracker" + (index + 1)} className='project-tracker-star'>{"*"}</div>
-                                        ))}
-                                        <div className='right-bracket'>{"//"}</div>
-                                </div>
-                                <div className='about-me-button'></div>
+                        <div className='project-tracker'>
+                                <div className='left-bracket'>{"//"}</div>
+                                {projectData.map((_, index) => (
+                                        <div key={"project-tracker" + index} id={"project-tracker" + (index + 1)} className='project-tracker-star'>{"*"}</div>
+                                ))}
+                                <div className='right-bracket'>{"//"}</div>
                         </div>
                 </div>
         );

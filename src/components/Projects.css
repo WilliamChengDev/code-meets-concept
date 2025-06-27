@@ -29,26 +29,15 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: center;
         }
 
-                .clock{
-                        height: 100%;
-                        aspect-ratio: 1/1;
-                        background-color: var(--light);
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        text-align: center;
-                        font-family: Jetbrainsmono-Regular;
-                        font-size: clamp(0.7rem, .9vw, 2rem); /*min preferred max*/
-                }
-
                 .project-tracker{
-                        height: 100%;
-                        width: 40%;
+                        height: 12.5%;
+                        width: 95.4%;
                         display: flex;
-                        justify-content: space-between;
+                        /* position: static; */
+                        justify-content: center;
                         align-items: center;
                 }
 
@@ -57,12 +46,6 @@
                                 font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
                                 padding: 2vw;
                         }
-
-                .about-me-button{
-                        height: 100%;
-                        aspect-ratio: 1/1;
-                        background-color: blue;
-                }
 
                 #project-panel1{
                         top: 1%;
