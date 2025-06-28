@@ -26,25 +26,35 @@
                         overflow: visible;
                 }
 
-                .art-row img{
-                        max-height: 95.4%;
-                        margin-left: 2.3vh;
-                        margin-right: 2.3vh;
-                        filter: drop-shadow(0 0 0.4rem rgba(0, 0, 0, 0.2));
-                        transform-style: preserve-3d;
-                        will-change: transform;
-                }
-
-                        #guitar-img{
-                                margin-left: 10vw;
-                                margin-right: 40vw;
+                        .art-row picture{
+                                height: 100%;
+                                display: flex;
+                                flex-direction: row;
+                                align-items: flex-end;
+                                justify-content: flex-start;
+                                overflow: visible;
+                                perspective: 1500px;
                         }
 
-                        #porsche-img{
-                                margin-left: 20vw;
-                        }
+                                .art-row picture img{
+                                        max-height:  95.4%;
+                                        margin-left: 2.3vh;
+                                        margin-right: 2.3vh;
+                                        filter: drop-shadow(0 0 0.4rem rgba(0, 0, 0, 0.2));
+                                        transform-style: preserve-3d;
+                                        will-change: transform;
+                                }
 
-                        #vertical-img{
-                                height: 195.4%;
-                                max-height: none;
-                        }
+                                #guitar-img{
+                                        margin-left: 10vw;
+                                        margin-right: 40vw;
+                                }
+
+                                #porsche-img{
+                                        margin-left: 20vw;
+                                }
+
+                                #vertical-img{
+                                        height: 204.6%;
+                                        max-height: none;
+                                }
