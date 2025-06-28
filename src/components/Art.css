@@ -9,7 +9,7 @@
 }
 
         .art-window{
-                width: 100%;
+                width: fit-content;
                 height: 80.3%;
                 padding-bottom: 12.5vh;
                 background-color: var(--light);
@@ -30,14 +30,14 @@
                                 height: 100%;
                                 display: flex;
                                 flex-direction: row;
-                                align-items: flex-end;
-                                justify-content: flex-start;
+                                align-items: center;
+                                justify-content: center;
                                 overflow: visible;
                                 perspective: 1500px;
                         }
 
                                 .art-row picture img{
-                                        max-height:  95.4%;
+                                        height:  90.8%;;
                                         margin-left: 2.3vh;
                                         margin-right: 2.3vh;
                                         filter: drop-shadow(0 0 0.4rem rgba(0, 0, 0, 0.2));
@@ -47,7 +47,6 @@
 
                                 #guitar-img{
                                         margin-left: 10vw;
-                                        margin-right: 40vw;
                                 }
 
                                 #porsche-img{
@@ -55,6 +54,15 @@
                                 }
 
                                 #vertical-img{
-                                        height: 204.6%;
+                                        height: 200%;
                                         max-height: none;
+                                }
+
+                                #top-vertical-img{
+                                        max-height: none;
+                                        align-items: flex-start;
+                                }
+
+                                #phone-booth-img{
+                                        margin-top: 4.6%;
                                 }

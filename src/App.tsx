@@ -108,16 +108,24 @@ export default function App() {
 
         //scroll normalization
         useEffect(() => {
-                const handler = (e: WheelEvent) => {
+                const wheelHandler = (e: WheelEvent) => {
                         e.preventDefault();
                         const dir = Math.sign(e.deltaY);             // +1 or -1
-                        const STEP = 25;                            // px per “notch”
+                        const STEP = window.innerHeight * 0.025; // 5% of viewport height; keeps scrolling speed consistent on window size change
                         window.scrollBy({ top: dir * STEP, behavior: 'auto' });
                 };
 
-                window.addEventListener('wheel', handler, { passive: false });
-                return () => window.removeEventListener('wheel', handler);
+                const resizeHandler = () => {
+                        ScrollTrigger.refresh(); // make sure animations sync with layout
+                };
 
+                window.addEventListener('wheel', wheelHandler, { passive: false });
+                window.addEventListener('resize', resizeHandler);
+                
+                return () => {
+                        window.removeEventListener('wheel', wheelHandler);
+                        window.removeEventListener('resize', resizeHandler);
+                };
         }, [])
 
         return (
