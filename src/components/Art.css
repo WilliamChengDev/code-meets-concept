@@ -9,7 +9,8 @@
 }
 
         .art-window{
-                width: fit-content;
+                display: block;
+                width: max-content;
                 height: 80.3%;
                 padding-bottom: 12.5vh;
                 background-color: var(--light);
@@ -17,7 +18,7 @@
 
                 .art-row{
                         position: relative;
-                        width: 200%;
+                        width: max-content;
                         height: 50%;
                         display: flex;
                         flex-direction: row;

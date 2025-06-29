@@ -1,5 +1,5 @@
 import './Art.css'
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { gsap } from 'gsap';
 import { useGSAP } from "@gsap/react";
 import GuitarWebp from '../images/Guitar.webp';
@@ -39,16 +39,24 @@ const Art = forwardRef<ArtHandles, {}>((props, ref) => {
         const porscheRef = useRef<HTMLImageElement>(null);
         const ferrariRef = useRef<HTMLImageElement>(null);
 
+        const galleryRef = useRef<HTMLDivElement>(null);
+
         //pass transitionTimeline to parent
         useImperativeHandle(ref, () => ({
                 getTimeline: () => transitionTl.current //typed by `export interface HeroHandles`
         }));
 
         useGSAP(() => {
+                if (!galleryRef.current) return; //return if no container
+
+                const galleryRect = galleryRef.current.getBoundingClientRect();
+
+                console.log('gallery width:', galleryRect.width);
+
                 transitionTl.current
                         .from('.art-row img', { duration: 5, translateY: '2rem', stagger: 0.05, opacity: 0, ease: 'power2.inOut' })
                         .from('.art-row img', { filter: 'grayscale(100%)', duration: 5, ease: 'power2.inOut' }, '<')
-                        .to('.art-window', {translateX: '-100%', duration: 20, ease: 'none'}, '<+=10')
+                        .to('.art-window', {translateX: `-${galleryRect.width}px`, duration: 20, ease: 'none'}, '<+=10')
         })
 
         //update image position based on layout of page
@@ -60,7 +68,7 @@ const Art = forwardRef<ArtHandles, {}>((props, ref) => {
                         !nissanRef.current ||
                         !phoneBoothRef.current ||
                         !porscheRef.current ||
-                        !ferrariRef.current
+                        !ferrariRef.current 
                 ) {
                         return;
                 }
@@ -186,7 +194,7 @@ const Art = forwardRef<ArtHandles, {}>((props, ref) => {
 
         return (
                 <div className="art-container">
-                        <div className='art-window'>
+                        <div className='art-window' ref={galleryRef}>
                                 <div className='art-row'>
                                         <picture id='guitar-img'>
                                                 <source srcSet={GuitarWebp} type='image/webp'/>

@@ -111,7 +111,7 @@ export default function App() {
                 const wheelHandler = (e: WheelEvent) => {
                         e.preventDefault();
                         const dir = Math.sign(e.deltaY);             // +1 or -1
-                        const STEP = window.innerHeight * 0.025; // 5% of viewport height; keeps scrolling speed consistent on window size change
+                        const STEP = window.innerHeight * 0.1; // 5% of viewport height; keeps scrolling speed consistent on window size change
                         window.scrollBy({ top: dir * STEP, behavior: 'auto' });
                 };
 

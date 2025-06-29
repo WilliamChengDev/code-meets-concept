@@ -68,7 +68,7 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                                                 <button className='art-button' onClick={() => {
                                                         gsap.to(window, {
                                                                 duration: 3,
-                                                                scrollTo: { y: '#art', offsetY: 0 },
+                                                                scrollTo: { y: 20000 },
                                                                 ease: 'power2.inOut'
                                                         })
                                                 }}>{"Art"}</button>
