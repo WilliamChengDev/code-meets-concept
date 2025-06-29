@@ -4,6 +4,7 @@ import Navbar, {type NavbarHandles} from './components/Navbar'
 import Hero, { type HeroHandles } from './components/Hero'
 import Projects, {type ProjectHandles} from './components/Projects'
 import Art, {type ArtHandles} from './components/Art'
+import Skills, {type SkillsHandles} from './components/Skills'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -14,6 +15,7 @@ export default function App() {
         const navbarRef = useRef<NavbarHandles>(null);
         const projectsRef = useRef<ProjectHandles>(null);
         const artRef = useRef<ArtHandles>(null);
+        const skillsRef = useRef<SkillsHandles>(null);
 
         //useEffect loads after useLayoutEffect in children; guarantees timelines in children are built
         useEffect(() => {
@@ -133,7 +135,8 @@ export default function App() {
                         <Navbar ref = { navbarRef } hero={heroRef} projects={projectsRef}/>
                         <section id='hero'><Hero ref = { heroRef }/></section>
                         <section id='projects'><Projects ref={ projectsRef } /></section>
-                        <section id='art'><Art ref={artRef}></Art></section>
+                        <section id='art'><Art ref={artRef} /></section>
+                        <section id='skills'><Skills ref={skillsRef}/></section>
                 </div>
         )
 }

@@ -51,16 +51,25 @@ const Art = forwardRef<ArtHandles, {}>((props, ref) => {
 
                 const galleryRect = galleryRef.current.getBoundingClientRect();
 
-                console.log('gallery width:', galleryRect.width);
-
                 transitionTl.current
                         .from('.art-row img', { duration: 5, translateY: '2rem', stagger: 0.05, opacity: 0, ease: 'power2.inOut' })
                         .from('.art-row img', { filter: 'grayscale(100%)', duration: 5, ease: 'power2.inOut' }, '<')
                         .to('.art-window', {translateX: `-${galleryRect.width}px`, duration: 20, ease: 'none'}, '<+=10')
+                        .to('.art-container', {opacity: 0, duration: 0.01})
+                        .to('.art-container', {display: 'none', duration: 0.01, delay: 1});
         })
 
         //update image position based on layout of page
         const updateImagePosition = () => {
+                console.log('refs:', {
+                        guitar: guitarRef.current,
+                        lantern: lanternRef.current,
+                        madLibs: madLibsRef.current,
+                        nissan: nissanRef.current,
+                        phoneBooth: phoneBoothRef.current,
+                        porsche: porscheRef.current,
+                        ferrari: ferrariRef.current
+                });
                 if(
                         !guitarRef.current ||
                         !lanternRef.current || 
@@ -76,16 +85,12 @@ const Art = forwardRef<ArtHandles, {}>((props, ref) => {
                 const guitarRect = guitarRef.current.getBoundingClientRect();
                 const lanternRect = lanternRef.current.getBoundingClientRect();
                 const nissanRect = nissanRef.current.getBoundingClientRect();
-                const porscheRect = porscheRef.current.getBoundingClientRect();
-                const ferrariRect = ferrariRef.current.getBoundingClientRect();
                 
                 const madLibsLeftMargin = lanternRect.right - guitarRect.right + window.innerHeight * 0.046;
-                const phoneBoothLeftMargin = ferrariRect.right - (porscheRect.right) + window.innerHeight * 0.046 + window.innerWidth * 0.2;
                 const verticalImgHeight = nissanRect.bottom - guitarRect.top;
 
                 //set img positions
                 madLibsRef.current.style.marginLeft = `${madLibsLeftMargin}px`;
-                // phoneBoothRef.current.style.marginLeft = `${phoneBoothLeftMargin}px`;
                 
                 //set img height values
                 lanternRef.current.style.height = `${verticalImgHeight}px`;
@@ -96,28 +101,26 @@ const Art = forwardRef<ArtHandles, {}>((props, ref) => {
                 // console.log('lantern right:', lanternRect.right);
                 // console.log('mad libs left margin:', madLibsLeftMargin);
                 // console.log('vertical img height:', verticalImgHeight);
-                console.log('ferrari right:', ferrariRect.right);
-                console.log('porsche right:', porscheRect.right - window.innerWidth * 0.4);
-                console.log('ferrarri rect:', ferrariRect);
-                console.log('porsche rect:', porscheRect);
-                console.log('phone booth left margin:', phoneBoothLeftMargin);
+                // console.log('madLibsRef marginLeft:', madLibsRef.current.style.marginLeft);
+
         }
 
         //update image position on load and resize
         useEffect(() => {
-                const onLoadOrResize = () => {
-                    requestAnimationFrame(updateImagePosition); // runs after layout is complete
+                const delayedUpdate = () => {
+                        requestAnimationFrame(() => {
+                                setTimeout(updateImagePosition, 0); // ensure full layout
+                        });
                 };
-            
-                // Run once after mount
-                window.addEventListener('load', onLoadOrResize);
-            
-                // Recalculate on resize too
-                window.addEventListener('resize', onLoadOrResize);
-            
+              
+                // Always run once after mount
+                delayedUpdate();
+              
+                // Recalculate on resize
+                window.addEventListener('resize', delayedUpdate);
+              
                 return () => {
-                    window.removeEventListener('load', onLoadOrResize);
-                    window.removeEventListener('resize', onLoadOrResize);
+                        window.removeEventListener('resize', delayedUpdate);
                 };
         }, []);
 

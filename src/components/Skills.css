@@ -1,0 +1,26 @@
+.skills-container{
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        background-color: var(--light);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+}
+
+        .tag-cloud-window{
+                display: flex;
+                width: 95.4%;
+                height: 80.3%;
+                padding-bottom: 12.5vh;
+                background-color: var(--light);
+                justify-content: center;
+                align-items: center;
+        }
+
+                .tag-cloud{
+                        width: 500px;
+                        height: 500px;
+                        background-color: red;
+                }

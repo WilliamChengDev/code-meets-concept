@@ -22,7 +22,6 @@
                         height: 50%;
                         display: flex;
                         flex-direction: row;
-                        align-items: flex-end;
                         justify-content: flex-start;
                         overflow: visible;
                 }
@@ -55,6 +54,8 @@
                                 }
 
                                 #vertical-img{
+                                        position: relative;
+                                        top: -100%;
                                         height: 200%;
                                         max-height: none;
                                 }
@@ -62,6 +63,8 @@
                                 #top-vertical-img{
                                         max-height: none;
                                         align-items: flex-start;
+                                        width: fit-content;
+                                        height: fit-content;
                                 }
 
                                 #phone-booth-img{
