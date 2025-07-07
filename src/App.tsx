@@ -62,7 +62,7 @@ export default function App() {
                                 end:       'bottom+=700% top', // three full viewport scrolls
                                 scrub:     0.5,
                                 pin:       true,              // set to true if you want to pin
-                                markers: true, //debugging
+                                markers: false, //debugging
                         }
                 });
 
@@ -73,7 +73,7 @@ export default function App() {
                                 end: 'bottom+=1000% top',
                                 scrub: 0.5,
                                 pin: true, // set to true if you want to pin
-                                markers: true, //debugging
+                                markers: false, //debugging
                         }
                 })
 
@@ -84,7 +84,7 @@ export default function App() {
                                 end: 'bottom+=1000% top',
                                 scrub: 0.5,
                                 pin: true, // set to true if you want to pin
-                                markers: true, //debugging
+                                markers: false, //debugging
                         }
                 })
 

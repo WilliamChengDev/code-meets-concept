@@ -52,6 +52,7 @@ const Skills = forwardRef<SkillsHandles, {}>((props, ref) => {
                 };
         }, []);
 
+        //set tag cloud size based on window size
         const updateOverlay = () => {
                 if (wrapperRef.current) {
                         const minSide = Math.min(window.innerWidth, window.innerHeight);
@@ -66,7 +67,7 @@ const Skills = forwardRef<SkillsHandles, {}>((props, ref) => {
 
                 //get sphere points for tags
                 points.current = generateSpherePoints(tags.length);
-                console.log("Sphere points generated:", points.current);
+                // console.log("Sphere points generated:", points.current);
 
                 //create tag positions/properties based on sphere points
                 const positions = tags.map((tag, index) => {
@@ -168,7 +169,7 @@ const Skills = forwardRef<SkillsHandles, {}>((props, ref) => {
                                 y: deltaX / centerX * rotationStrength  // Adjust sensitivity
                         })
 
-                        console.log("Mouse position:", mouseX, mouseY);
+                        // console.log("Mouse position:", mouseX, mouseY);
                         console.log("Target rotation:", targetRotation);
                 }
         }
