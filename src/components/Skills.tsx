@@ -159,26 +159,36 @@ const Skills = forwardRef<SkillsHandles, {}>((props, ref) => {
                         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
                         const maxDistance = Math.sqrt(centerX * centerX + centerY * centerY);
-                        const normalizedDistance = Math.min(distance / maxDistance, 1); // Normalize to [
+                        const normalizedDistance = Math.min(distance / maxDistance, 1); // Normalize to [-1, 1]
 
                         const maxRotation = 3; // Max rotation strength
                         const rotationStrength = maxRotation * normalizedDistance;
 
-                        setTargetRotation({
-                                x: deltaY / centerY * rotationStrength, // Adjust sensitivity
-                                y: deltaX / centerX * rotationStrength  // Adjust sensitivity
-                        })
+                        const x = deltaY / width * rotationStrength 
+                        const y = deltaX / width * rotationStrength
+
+                        // Normalize to keep consistent speed in all directions
+                        const magnitude = Math.sqrt(x * x + y * y);
+                        if (magnitude > 0) {
+                                const normalizedX = (x / magnitude) * Math.min(magnitude, 1);
+                                const normalizedY = (y / magnitude) * Math.min(magnitude, 1);
+                                
+                                setTargetRotation({ 
+                                        x: normalizedX, 
+                                        y: normalizedY 
+                                });
+                        }
 
                         // console.log("Mouse position:", mouseX, mouseY);
-                        console.log("Target rotation:", targetRotation);
+                        // console.log("Target rotation:", targetRotation);
                 }
         }
 
         useEffect(() => {
                 const animate = () => {
                         setCurrentRotation(prev => ({
-                                x: prev.x + (targetRotation.x - prev.x) * 0.05,
-                                y: prev.y + (targetRotation.y - prev.y) * 0.05
+                                x: prev.x + targetRotation.x * 0.05,
+                                y: prev.y + targetRotation.y * 0.05
                         }))
                         // console.log("Current rotation:", currentRotation);
                         animationRef.current = requestAnimationFrame(animate);
