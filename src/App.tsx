@@ -53,9 +53,9 @@ export default function App() {
                         !projectsTl ||
                         projectsTl.getChildren().length === 0 ||
                         !artTl ||
-                        artTl.getChildren().length === 0 || 
-                        !skillsTl ||
-                        skillsTl.getChildren().length === 0
+                        artTl.getChildren().length === 0
+                        // !skillsTl ||
+                        // skillsTl.getChildren().length === 0 //adding this breaks the website animation
                 ) {
                         return;
                 }
@@ -94,23 +94,24 @@ export default function App() {
                         }
                 })
 
-                const skillsMaster = gsap.timeline({
-                        scrollTrigger: {        
-                                trigger: '#skills',
-                                start: 'top top',
-                                end: 'bottom+=1000% top',
-                                scrub: 0.5,
-                                pin: true, // set to true if you want to pin
-                                markers: false, //debugging
-                        }
-                });
+                //adding this breaks the tag cloud animation
+                // const skillsMaster = gsap.timeline({
+                //         scrollTrigger: {        
+                //                 trigger: '#skills',
+                //                 start: 'top top',
+                //                 end: 'bottom+=1000% top',
+                //                 scrub: 0.5,
+                //                 pin: true, // set to true if you want to pin
+                //                 markers: false, //debugging
+                //         }
+                // });
 
                 //add transition timelines
                 heroMaster.add(heroTl);
                 heroMaster.add(navbarTl);
                 projectMaster.add(projectsTl);
                 artMaster.add(artTl);
-                skillsMaster.add(skillsTl);
+                // skillsMaster.add(skillsTl);
 
                 console.log('heroMaster.duration()', heroMaster.duration()); // updated to reflect the new variable name
                 console.log('heroTl.duration()', heroTl.duration());
@@ -118,7 +119,7 @@ export default function App() {
                 console.log('projectsTl.duration()', projectsTl.duration());
                 console.log('artMaster.duration()', artMaster.duration());
                 console.log('artTl.duration()', artTl.duration());
-                console.log('skillsMaster.duration()', skillsMaster.duration()); // added to log skillsMaster duration
+                // console.log('skillsMaster.duration()', skillsMaster.duration()); // added to log skillsMaster duration
 
                 //cleanup on unmount
                 return () => {

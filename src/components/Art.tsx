@@ -48,7 +48,7 @@ const Art = forwardRef<ArtHandles, {}>((props, ref) => {
                 transitionTl.current
                         .from('.art-row img', { duration: 5, translateY: '2rem', stagger: 0.05, opacity: 0, ease: 'power2.inOut' })
                         .from('.art-row img', { filter: 'grayscale(100%)', duration: 5, ease: 'power2.inOut' }, '<')
-                        .to('.art-window', {translateX: `-110%`, duration: 20, ease: 'none'}, '<+=10')
+                        .to('.art-window', {translateX: `-110%`, duration: 20, ease: 'none'}, '<+=5')
         })
 
         //update image position based on layout of page
