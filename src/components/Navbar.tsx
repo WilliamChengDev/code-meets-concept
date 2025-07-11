@@ -21,15 +21,6 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
         //scroll position
         const [scrollPosition, setScrollPosition] = useState<number>(0);
 
-        //get buttons and content
-        const projectsButton = document.querySelector('.projects-button') as HTMLButtonElement;
-        const projectsArrow = document.querySelector('#projects-arrow') as HTMLSpanElement;
-        const artButton = document.querySelector('.art-button') as HTMLButtonElement;
-        const artArrow = document.querySelector('#art-arrow') as HTMLSpanElement;
-        const skillsButton = document.querySelector('.skills-button') as HTMLButtonElement;
-        const skillsArrow = document.querySelector('#skills-arrow') as HTMLSpanElement;
-
-
         //update scroll position on scroll
         useEffect(() => {
                 const handleScroll = () => {
@@ -155,7 +146,13 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                                                         </button>
                                                 </div>
                                                 <div className='button-container'>
-                                                        <button className='contact-button'>{"Contact"}</button>
+                                                        <button className='contact-button'onClick={() => {
+                                                                gsap.to(window, {
+                                                                        duration: 3,
+                                                                        scrollTo: '#contact',
+                                                                        ease: 'power2.inOut'
+                                                                })
+                                                        }}>{"Contact"}</button>
                                                 </div>
                                         </div>
                                 </div>
