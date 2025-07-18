@@ -59,9 +59,9 @@ export default function App() {
                         !projectsTl ||
                         projectsTl.getChildren().length === 0 ||
                         !artTl ||
-                        artTl.getChildren().length === 0 
-                        // !contactTl ||
-                        // contactTl.getChildren().length === 0
+                        artTl.getChildren().length === 0 ||
+                        !contactTl ||
+                        contactTl.getChildren().length === 0
                         // !skillsTl ||
                         // skillsTl.getChildren().length === 0 //adding this breaks the website animation
                 ) {
@@ -80,7 +80,7 @@ export default function App() {
                         scrollTrigger:{
                                 trigger:   '#hero', //the element that triggers the scroll
                                 start:     'top top', //trigger element's top edge, viewport top edge
-                                end:       'bottom+=700% top', // three full viewport scrolls
+                                end:       'bottom+=300% top', // three full viewport scrolls
                                 scrub:     0.5,
                                 pin:       true,              // set to true if you want to pin
                                 markers: false, //debugging
@@ -91,7 +91,7 @@ export default function App() {
                         scrollTrigger: {
                                 trigger: '#projects',
                                 start: 'top top',
-                                end: 'bottom+=1000% top',
+                                end: 'bottom+=600% top',
                                 scrub: 0.5,
                                 pin: true, // set to true if you want to pin
                                 markers: false, //debugging
@@ -125,10 +125,10 @@ export default function App() {
                         scrollTrigger: {
                                 trigger: '#contact',
                                 start: 'top top',
-                                end: 'bottom+=1000% top',
+                                end: 'bottom+=100% top',
                                 scrub: 0.5,
                                 pin: true, // set to true if you want to pin
-                                markers: true, //debugging
+                                markers: false, //debugging
                         }
                 })
 
@@ -162,7 +162,7 @@ export default function App() {
                 const wheelHandler = (e: WheelEvent) => {
                         e.preventDefault();
                         const dir = Math.sign(e.deltaY);             // +1 or -1
-                        const STEP = window.innerHeight * 0.1; // 5% of viewport height; keeps scrolling speed consistent on window size change
+                        const STEP = window.innerHeight * .1; // 5% of viewport height; keeps scrolling speed consistent on window size change
                         window.scrollBy({ top: dir * STEP, behavior: 'auto' });
                 };
 

@@ -51,12 +51,12 @@ const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
                         .from("#project-panel1", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 1.5, ease: "power2.inOut" })
                         .to("#project-tracker1", { scale: 1.1, duration: 0.5, color: "var(--green)", fontWeight:'Bold', ease: "power2.inOut" }, '<')
 
-                        .from("#project-panel2", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 1.5, ease: "power2.inOut" }, '<+=5')
+                        .from("#project-panel2", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 1.5, ease: "power2.inOut" }, '<+=3')
                         .to("#project-panel1", {filter: "blur(0.2rem)", opacity: 1}, '<')
                         .to("#project-tracker1", { scale: 1, duration: 0.5, color: "var(--dark)", fontWeight:'Normal', ease: "power2.inOut" }, '<')
                         .to("#project-tracker2", { scale: 1.1, duration: 0.5, color: "var(--green)", fontWeight:'Bold', ease: "power2.inOut" }, '<')
                         
-                        .from("#project-panel3", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 1.5, ease: "power2.inOut" }, '<+=5')
+                        .from("#project-panel3", { scale:0.2, translateY: 200, opacity: 0, translateX: 100, duration: 1.5, ease: "power2.inOut" }, '<+=3')
                         .to("#project-panel2", {filter: "blur(0.2rem)", opacity: 1}, '<')
                         .to("#project-tracker2", { scale: 1, duration: 0.5, color: "var(--dark)", fontWeight:'Normal', ease: "power2.inOut" }, '<')
                         .to("#project-tracker3", { scale: 1.1, duration: 0.5, color: "var(--green)", fontWeight:'Bold', ease: "power2.inOut" }, '<')

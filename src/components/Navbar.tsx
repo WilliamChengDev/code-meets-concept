@@ -47,9 +47,6 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                         gsap.to('.art-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#art-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
 
-                        gsap.to('.skills-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
-                        gsap.to('#skills-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
-
                 } else if(scrollPosition >= 22000 && scrollPosition < 31000){
                         gsap.to('.art-button', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#art-arrow', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
@@ -59,14 +56,20 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                         gsap.to('.skills-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#skills-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
 
-                } else if(scrollPosition >= 31000 && scrollPosition < 44000){
+                } else if(scrollPosition >= 31000 && scrollPosition < 32000){
                         gsap.to('.skills-button', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#skills-arrow', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
 
-                        gsap.to('.projects-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
-                        gsap.to('#projects-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('.art-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#art-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('.contact-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('#contact-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
+                } else if(scrollPosition >= 32000){
+                        gsap.to('.contact-button', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('#contact-arrow', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
+
+                        gsap.to('.skills-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('#skills-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
                 }
         }, [scrollPosition])
 
@@ -152,7 +155,10 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                                                                         scrollTo: '#contact',
                                                                         ease: 'power2.inOut'
                                                                 })
-                                                        }}>{"Contact"}</button>
+                                                        }}>
+                                                                <span id='contact-arrow'>{'>'}</span>
+                                                                {"Contact"}
+                                                        </button>
                                                 </div>
                                         </div>
                                 </div>
