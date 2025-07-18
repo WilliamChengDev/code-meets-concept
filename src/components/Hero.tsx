@@ -174,7 +174,7 @@ const Hero = forwardRef<HeroHandles, {}>((props, ref) => {
                         </div>
                         <div className='code-section-container'>
                                 <div className='numbered-lines-container'>
-                                        {Array.from({ length: 60 }, (_, i) => (
+                                        {Array.from({ length: 80 }, (_, i) => (
                                                 i == 0 ? <div key={"num" + i} ref={lineRef}>{"0" + (i + 1)}</div> :
                                                         i < 9 ? <div key={"num" + i}>{"0" + (i + 1)}</div> : <div key={"num" + i}>{i + 1}</div>
                                         ))}

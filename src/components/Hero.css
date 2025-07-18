@@ -40,7 +40,8 @@
 
                                 .topbar-tab-title{
                                         width: 100%;
-                                        height: 3vh;
+                                        height: fit-content;
+                                        flex: 1;
                                 }
 
                                 .topbar-tab-title h1{
@@ -84,7 +85,7 @@
                                         padding-top: 0.2rem;
                                         padding-left: 0.2rem;
                                         padding-right: 0.2rem;
-                                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                        font-size: clamp(0.3rem, 1.3vw, 1rem); /*min preferred max*/
                                         user-select: none;
                                 }
                         
@@ -104,7 +105,7 @@
                                         font-family: JetbrainsMono-Regular;
                                         color: var(--medium);
                                         padding: 0.2rem 0.2rem 0rem 0.2rem; /* padding-top, padding-right, padding-bottom, padding-left */
-                                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                        font-size: clamp(0.3rem, 1.3vw, 1rem); /*min preferred max*/
                                         white-space: pre;
                                         overflow: hidden;
                                         user-select: none;
@@ -249,7 +250,6 @@
                 flex-direction: row;
                 justify-content: center;
                 user-select: none;
-
         }
 
                 .subtitle-comment{
@@ -281,3 +281,71 @@
                 right: 1.9vw;
                 user-select: none;
         }
+
+/* === Mobile styles for smaller screens === */
+@media (max-width: 768px) { 
+        .numbered-lines-container{
+                min-width: 5%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+        }
+
+                .numbered-lines-container div{
+                        font-size: clamp(0.7rem, 1.3vw, 1rem); /*min preferred max*/
+                }
+
+        .code-section-container{
+                height: 70%;
+        }
+        
+                .editor-container div{ 
+                        font-size: clamp(0.7rem, 1.3vw, 1rem); /*min preferred max*/
+                }
+
+        .terminal-section-container{
+                flex: 1;
+        }
+
+                .terminal-text-container{
+                        flex-direction: column;
+                        align-items: flex-start;
+                }
+
+                        .terminal-text-left{
+                                height: 30%;
+                                width: 100%;
+                        }
+
+                                .terminal-text-left h1{
+                                        font-size: clamp(0.5rem, 3vw, 3rem); /*min preferred max*/                                }
+
+                        .terminal-text-right{
+                                height: 70%;
+                                width: 100%;
+                                /* align-items: flex-start;
+                                margin-top: 7%; */
+                        }
+
+                                .terminal-text-right h1{
+                                        font-size: clamp(0.5rem, 10vw, 10rem); /*min preferred max*/
+                                }
+
+        .subtitle-comment{
+                font-size: clamp(0.5rem, 7vw, 3rem); /*min preferred max*/
+        }
+
+        .subtitle-text{
+                font-size: clamp(0.5rem, 7vw, 3rem); /*min preferred max*/
+        }
+
+        .william{
+                transform: scale(0.9);
+                /* text-align: center; */
+        }
+
+        .cheng{
+                transform: scale(0.9);
+                /* text-align: center; */
+        }
+}
