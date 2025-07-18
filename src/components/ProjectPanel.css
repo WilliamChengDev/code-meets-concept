@@ -20,7 +20,7 @@
 
                 .project-topbar-tab{
                         height: fit-content;
-                        width: 20%;
+                        width: fit-content;
                         display: flex;
                         flex-direction: column;
                         position: relative;
@@ -31,7 +31,7 @@
 
                         .project-topbar-tab-title{
                                 width: 100%;
-                                height: 3vh;
+                                height: 100%;
                         }
 
                         .project-topbar-tab-title h1{
@@ -117,16 +117,20 @@
                         .project-terminal-topbar-text{
                                 font-size: clamp(0.5rem, 1.3vw, .7rem); /*min preferred max*/
                                 width: fit-content;
+                                height: calc(100% - .3vh);
                                 font-family: JetbrainsMono-Regular;
                                 color: var(--light);
                                 margin: 0;
                                 padding: 0 2vw .3vh 2vw;
                                 opacity: 0.25;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
                         }
 
                         .project-terminal-button-text{
                                 opacity: 1;
-                                height: 100%;
+                                height: calc(100% - .3vh);
                                 color: var(--light);
                                 font-family: JetbrainsMono-Regular;
                                 font-size: clamp(0.5rem, 1.3vw, .7rem); /*min preferred max*/
@@ -145,19 +149,19 @@
                 }
 
                         .project-terminal-text{
-                                width: 45vw;
-                                height: fit-content;
+                                width: 100%;
+                                height: 100%;
                                 display: flex;
                                 flex-direction: row;
                                 align-items: center;
                         }
 
                                 .project-terminal-text h1{
-                                        width: 100%;
-                                        height: fi;
+                                        width: 30%;
+                                        height: fit-content;
                                         font-family: JetbrainsMono-Regular;
                                         color: var(--green);
-                                        font-size: clamp(0.5rem, 2.5vw, 1rem); /*min preferred max*/
+                                        font-size: clamp(0.5rem, 3vw, 1rem); /*min preferred max*/
                                         margin: 0;
                                         text-wrap: nowrap;
                                 }
@@ -172,11 +176,43 @@
                                 }
 
                                 .project-description{
-                                        width: fit-content;
-                                        height: fit-content;
+                                        width: 60%;
+                                        height: 100%;
                                         display: flex;
-                                        align-items: flex-start;
+                                        align-items: center;
                                         font-family: JetbrainsMono-Regular;
                                         color: var(--light);
-                                        font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
+                                        font-size: clamp(0.5rem, 3vw, 1rem); /*min preferred max*/
                                 }
+
+@media (max-width: 768px) {
+
+        .project-panel-container{
+                position: relative;
+                width: 100%;
+                height: 90%;
+        }
+
+        .project-code-section-container{
+                flex: 1;
+        }
+
+                .project-numbered-lines-container{
+                        min-width: 5%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                }
+
+                        .project-numbered-lines-container div{
+                                font-size: clamp(0.7rem, 1.3vw, 1rem); /*min preferred max*/
+                        }
+
+                        .project-editor-line{
+                                font-size: clamp(0.7rem, 1.3vw, 1rem); /*min preferred max*/
+                        }
+
+        .project-terminal-section-container{
+                height: 30%;
+        }
+}
