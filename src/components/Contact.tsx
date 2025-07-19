@@ -26,7 +26,7 @@ const Contact = forwardRef<ContactHandles, {}>((props, ref) => {
         useGSAP(() => {
                 transitionTl.current
                         .from('.about-me', {translateX: '-10rem', duration: 1, opacity:0})
-                        .to('#contact-name', {scrambleText: {text: "William Cheng", revealDelay: 0, speed: 0.5}}, '<')
+                        .to('#contact-name h1', {scrambleText: {text: "William Cheng", revealDelay: 0, speed: 0.5}}, '<')
                         .from('#contact-text', {translateY: '3rem', opacity: 0, duration: 1}, '<')
         }, [])
 
@@ -62,7 +62,7 @@ const Contact = forwardRef<ContactHandles, {}>((props, ref) => {
                                 </div>
                                 <div className='contact-description-window'>
                                         <div className='contact-description'>
-                                                <h1 id='contact-name'>{'loading...'}</h1>
+                                                <div id='contact-name'> <h1>{'loading...'}</h1></div>
                                                 <h2>The University of Iowa, Iowa City, IA</h2>
                                                 <p id='contact-text'>Driven and resilient rising sophomore computer science/psychology major. Passionate problem-solver and self-learner, skills include Java/Python/HTML/JS/SQL/React and more. Experienced in graphic design and a proficiency for working in fast-paced collaborative environments.</p>
                                         </div>
