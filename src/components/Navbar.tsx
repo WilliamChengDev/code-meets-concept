@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 import './Navbar.css'
 import { gsap } from 'gsap';
 import { useGSAP } from "@gsap/react";
@@ -12,7 +12,7 @@ export interface NavbarHandles {
         getTimeline: () => gsap.core.Timeline;
 }
 
-const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref) => {
+const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any, projectsTlDuration: any, artTlDuration:any, contactTlDuration:any}>((props, ref) => {
 
         //state for the 'now' date
         const [now, setNow] = useState<Date>(new Date());
@@ -20,6 +20,12 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
 
         //scroll position
         const [scrollPosition, setScrollPosition] = useState<number>(0);
+
+        const [heroPosition, setHeroPosition] = useState(0);
+        const [projectsPosition, setProjectsPosition] = useState(0);
+        const [artPosition, setArtPosition] = useState(0);
+        const [skillsPosition, setSkillsPosition] = useState(0);
+        const [contactPosition, setContactPosition] = useState(0);
 
         //update scroll position on scroll
         useEffect(() => {
@@ -38,16 +44,31 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                 };
         }, [scrollPosition]);
 
+        useLayoutEffect(() => {
+                setProjectsPosition((window.innerHeight * 5) + (window.innerHeight * 7 * ( 3.5 / props.projectsTlDuration ))); //hero length + 3.5 seconds of projects length
+                setArtPosition((window.innerHeight * 12) + (window.innerHeight * 11 * (2.5 / props.artTlDuration))) //hero + projects + 2.5 s of arts
+                setSkillsPosition(window.innerHeight * 24)
+                setContactPosition((window.innerHeight * 24) + (window.innerHeight * 2 * (2 / props.contactTlDuration)))
+
+                console.log(`projects position: ${projectsPosition}`)
+                console.log(`arts position: ${artPosition}`)
+        }, [props.projectsTlDuration, props.artTlDuration, props.contactTlDuration])
+
+
         //update button styles based on scroll position
         useEffect(() => {
-                if(scrollPosition >= 11000 && scrollPosition < 22000){
+                if(scrollPosition >= projectsPosition && scrollPosition < artPosition-1){
                         gsap.to('.projects-button', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#projects-arrow', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
 
                         gsap.to('.art-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#art-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('.skills-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('#skills-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('.contact-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('#contact-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
 
-                } else if(scrollPosition >= 22000 && scrollPosition < 31000){
+                } else if(scrollPosition >= artPosition-1 && scrollPosition < skillsPosition){
                         gsap.to('.art-button', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#art-arrow', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
 
@@ -55,8 +76,10 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                         gsap.to('#projects-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('.skills-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#skills-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('.contact-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('#contact-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
 
-                } else if(scrollPosition >= 31000 && scrollPosition < 32000){
+                } else if(scrollPosition >= skillsPosition && scrollPosition < contactPosition){
                         gsap.to('.skills-button', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#skills-arrow', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
 
@@ -64,12 +87,19 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                         gsap.to('#art-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('.contact-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#contact-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
-                } else if(scrollPosition >= 32000){
+                        gsap.to('.projects-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('#projects-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
+
+                } else if(scrollPosition >= contactPosition){
                         gsap.to('.contact-button', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#contact-arrow', {opacity: 1, duration:0.15, ease: 'power2.inOut'});
 
                         gsap.to('.skills-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
                         gsap.to('#skills-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('.art-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('#art-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('.projects-button', {opacity: 0.3, duration:0.15, ease: 'power2.inOut'});
+                        gsap.to('#projects-arrow', {opacity: 0, duration:0.15, ease: 'power2.inOut'});
                 }
         }, [scrollPosition])
 
@@ -116,7 +146,7 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                                                         <button className='projects-button' onClick={() => {
                                                                 gsap.to(window, {
                                                                         duration: 3,
-                                                                        scrollTo: { y: (window.innerHeight * 5) + (window.innerHeight * 7 * (3.5/18)) },
+                                                                        scrollTo: { y: projectsPosition},
                                                                         ease: 'power2.inOut'
                                                                 })
                                                         }}>
@@ -128,7 +158,7 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                                                         <button className='art-button' onClick={() => {
                                                                 gsap.to(window, {
                                                                         duration: 3,
-                                                                        scrollTo: { y: 22000 },
+                                                                        scrollTo: { y: artPosition },
                                                                         ease: 'power2.inOut'
                                                                 })
                                                         }}>
@@ -152,7 +182,7 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any}>((props, ref
                                                         <button className='contact-button'onClick={() => {
                                                                 gsap.to(window, {
                                                                         duration: 3,
-                                                                        scrollTo: '#contact',
+                                                                        scrollTo: {y: contactPosition},
                                                                         ease: 'power2.inOut'
                                                                 })
                                                         }}>

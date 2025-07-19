@@ -68,7 +68,6 @@ const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
                         {projectData.slice().reverse().map(project => (
                                 transitionTl.current.to(`#project-panel${project[0]}`, { scale: 0.01, opacity: 0, ease:"power2.inOut", duration: 3}, '<')
                         ))}
-
         })          
 
         return(

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './App.css'
 import Navbar, {type NavbarHandles} from './components/Navbar'
 import Hero, { type HeroHandles } from './components/Hero'
@@ -24,6 +24,12 @@ export default function App() {
         let ARTTLLENGTH = 1000
         let SKILLSTLLENGTH = 0
         let CONTACTTLLENGTH = 100
+
+        //get duration of
+        const [projectsTlDuration, setProjectTlDuration] = useState(0);
+        const [artTlDuration, setArtTlDuration] = useState(0);
+        // const [skillsTlDuration, setSkillsTlDuration] = useState(0); //currently unused
+        const [contactTlDuration, setContactTlDuration] = useState(0);
 
         //useEffect loads after useLayoutEffect in children; guarantees timelines in children are built
         useEffect(() => {
@@ -80,6 +86,13 @@ export default function App() {
                         return;
                 }
                 console.log('transition animations loaded')
+
+                //get durations of timeline (for navbar scrollTo)
+                setProjectTlDuration(projectsTl.duration());
+                setArtTlDuration(artTl.duration());
+                // setSkillsTlDuration(skillsTl?.duration()) currently unused since skills has no tl
+                setContactTlDuration(contactTl.duration());
+
 
                 //scroll timelines
                 const heroMaster = gsap.timeline({
@@ -185,16 +198,11 @@ export default function App() {
                 };
         }, [])
 
-        //get page positions based off of scrolldistance
-        useLayoutEffect(() => {
-                
-        })
-
         return (
                 <div className='app-container'>
-                        <Navbar ref = { navbarRef } hero={heroRef} projects={projectsRef}/>
+                        <Navbar ref = { navbarRef } hero={heroRef} projects={projectsRef} projectsTlDuration = {projectsTlDuration} artTlDuration = {artTlDuration} contactTlDuration = {contactTlDuration}/>
                         <section id='hero'><Hero ref = { heroRef }/></section>
-                        <section id='projects'><Projects ref={ projectsRef } /></section>
+                        <section id='projects'><Projects ref={ projectsRef }/></section>
                         <section id='art'><Art ref={artRef} /></section>
                         <section id='skills'><Skills ref={skillsRef}/></section>
                         <section id='contact'><Contact ref={contactRef} /></section>
