@@ -36,4 +36,5 @@
                                 pointer-events: none;
                                 user-select: none;
                                 font-family: JetbrainsMono-Regular;
+                                font-size: clamp(0.8rem, 16px, 1rem);
                         }

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import './App.css'
 import Navbar, {type NavbarHandles} from './components/Navbar'
 import Hero, { type HeroHandles } from './components/Hero'
@@ -18,6 +18,12 @@ export default function App() {
         const artRef = useRef<ArtHandles>(null);
         const skillsRef = useRef<SkillsHandles>(null);
         const contactRef = useRef<ContactHandles>(null);
+
+        let HEROTLLENGTH = 300
+        let PROJECTSTLLENGTH = 600
+        let ARTTLLENGTH = 1000
+        let SKILLSTLLENGTH = 0
+        let CONTACTTLLENGTH = 100
 
         //useEffect loads after useLayoutEffect in children; guarantees timelines in children are built
         useEffect(() => {
@@ -80,8 +86,8 @@ export default function App() {
                         scrollTrigger:{
                                 trigger:   '#hero', //the element that triggers the scroll
                                 start:     'top top', //trigger element's top edge, viewport top edge
-                                end:       'bottom+=300% top', // three full viewport scrolls
-                                scrub:     0.5,
+                                end:       `bottom+=${HEROTLLENGTH}% top`,
+                                scrub:     1,
                                 pin:       true,              // set to true if you want to pin
                                 markers: false, //debugging
                         }
@@ -91,8 +97,8 @@ export default function App() {
                         scrollTrigger: {
                                 trigger: '#projects',
                                 start: 'top top',
-                                end: 'bottom+=600% top',
-                                scrub: 0.5,
+                                end: `bottom+=${PROJECTSTLLENGTH}% top`,
+                                scrub: 1,
                                 pin: true, // set to true if you want to pin
                                 markers: false, //debugging
                         }
@@ -102,7 +108,7 @@ export default function App() {
                         scrollTrigger: {
                                 trigger: '#art',
                                 start: 'top top',
-                                end: 'bottom+=1000% top',
+                                end: `bottom+=${ARTTLLENGTH}% top`,
                                 scrub: 0.5,
                                 pin: true, // set to true if you want to pin
                                 markers: false, //debugging
@@ -125,7 +131,7 @@ export default function App() {
                         scrollTrigger: {
                                 trigger: '#contact',
                                 start: 'top top',
-                                end: 'bottom+=100% top',
+                                end: `bottom+=${CONTACTTLLENGTH}% top`,
                                 scrub: 0.5,
                                 pin: true, // set to true if you want to pin
                                 markers: false, //debugging
@@ -178,6 +184,11 @@ export default function App() {
                         window.removeEventListener('resize', resizeHandler);
                 };
         }, [])
+
+        //get page positions based off of scrolldistance
+        useLayoutEffect(() => {
+                
+        })
 
         return (
                 <div className='app-container'>

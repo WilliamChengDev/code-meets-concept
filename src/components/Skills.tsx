@@ -124,7 +124,7 @@ const Skills = forwardRef<SkillsHandles, {}>((props, ref) => {
                         x: (x * scale * perspective) + width / 2,
                         y: (y * scale * perspective) + height / 2,
                         scale: perspective,
-                        opacity: Math.max(0.05, perspective) // Closer points are more opaque
+                        opacity: Math.max(0.01, perspective) // Closer points are more opaque
                 };
         }
 
