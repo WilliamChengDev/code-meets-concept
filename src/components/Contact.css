@@ -1,4 +1,5 @@
 .contact-container{
+        height: 100dvh;
         height: 100vh;
         width: 100vw;
         /* overflow: scroll; */
@@ -12,6 +13,7 @@
                 display: flex;
                 width: 95.4%;
                 min-height: 80.3%;
+                padding-bottom: 12.5dvh;
                 padding-bottom: 12.5vh;
                 background-color: var(--light);
                 justify-content: center;

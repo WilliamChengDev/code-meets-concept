@@ -4,20 +4,12 @@
   overflow-x: hidden;
 }
 
-section#hero {
+section {
+  height: 100dvh;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--light);
-  overflow: hidden;
-}
-
-section#projects {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: red;
   overflow: hidden;
 }

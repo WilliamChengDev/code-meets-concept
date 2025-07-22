@@ -1,5 +1,6 @@
 .art-container{
         width: 100vw;
+        height: 100dvh;
         height: 100vh;
         position: relative;
         background-color: var(--light);
@@ -12,6 +13,7 @@
                 display: block;
                 width: max-content;
                 height: 80.3%;
+                padding-bottom: 12.5dvh;
                 padding-bottom: 12.5vh;
                 background-color: var(--light);
         }

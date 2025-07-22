@@ -1,7 +1,8 @@
 .projects-container{
         position: relative;
         width: 100%;
-        height: 100%;
+        height: 100dvh;
+        height: 100vh;
         margin: 0;          /* just in case */
         padding: 0;         /* make sure there’s no extra space inside */
         z-index: 0;
