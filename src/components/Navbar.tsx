@@ -21,7 +21,7 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any, projectsTlDu
         //scroll position
         const [scrollPosition, setScrollPosition] = useState<number>(0);
 
-        const [heroPosition, setHeroPosition] = useState(0);
+        //positions of each section, used to update button scrollto locations
         const [projectsPosition, setProjectsPosition] = useState(0);
         const [artPosition, setArtPosition] = useState(0);
         const [skillsPosition, setSkillsPosition] = useState(0);
@@ -44,14 +44,28 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any, projectsTlDu
                 };
         }, [scrollPosition]);
 
-        useLayoutEffect(() => {
+        //update positions of each section based on scroll animation duration
+        const updatePositions = () => {
                 setProjectsPosition((window.innerHeight * 5) + (window.innerHeight * 7 * ( 3.5 / props.projectsTlDuration ))); //hero length + 3.5 seconds of projects length
                 setArtPosition((window.innerHeight * 12) + (window.innerHeight * 11 * (2.5 / props.artTlDuration))) //hero + projects + 2.5 s of arts
                 setSkillsPosition(window.innerHeight * 24)
                 setContactPosition((window.innerHeight * 24) + (window.innerHeight * 2 * (2 / props.contactTlDuration)))
+        }
+
+        useLayoutEffect(() => {
+                updatePositions();
 
                 console.log(`projects position: ${projectsPosition}`)
                 console.log(`arts position: ${artPosition}`)
+
+                // Recompute whenever window resizes:
+                window.addEventListener("resize", updatePositions);
+
+                //remove listener on unmount
+                return () => {
+                        window.removeEventListener("resize", updatePositions);
+                };
+
         }, [props.projectsTlDuration, props.artTlDuration, props.contactTlDuration])
 
 

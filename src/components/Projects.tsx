@@ -13,11 +13,11 @@ export interface ProjectHandles {
         getTimeline: () => gsap.core.Timeline;
 }
 
-const Projects = forwardRef<ProjectHandles, {}>((props, ref) => {
+const Projects = forwardRef<ProjectHandles, {}>(({}, ref) => {
 
         const transitionTl = useRef(gsap.timeline({paused: false}));
 
-        const [projectData, setProjectData] = useState([
+        const [projectData] = useState([
                 [
                         "1",
                         "LSTM.ipynb", 

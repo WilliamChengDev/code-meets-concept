@@ -19,7 +19,7 @@ export interface ContactHandles {
         getTimeline: () => gsap.core.Timeline;
 }
 
-const Contact = forwardRef<ContactHandles, {}>((props, ref) => {
+const Contact = forwardRef<ContactHandles, {}>(({}, ref) => {
 
         const transitionTl = useRef(gsap.timeline({paused: false}));
 

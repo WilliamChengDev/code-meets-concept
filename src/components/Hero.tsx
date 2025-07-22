@@ -15,7 +15,7 @@ export interface HeroHandles {
 //use forwardRef to allow the functional object to take props and have refs
 //props: parent -> child state, reloads node on change
 //refs: allows outside objects to access inside refs
-const Hero = forwardRef<HeroHandles, {}>((props, ref) => {
+const Hero = forwardRef<HeroHandles, {}>(({}, ref) => {
 
         const lockScroll   = () => { document.body.style.overflow = 'hidden'; }; //to lock + unlock scroll on intro animation
         const unlockScroll = () => { document.body.style.overflow = ''; };

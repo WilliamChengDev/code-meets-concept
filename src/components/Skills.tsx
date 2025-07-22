@@ -10,7 +10,7 @@ export interface SkillsHandles {
         getTimeline: () => gsap.core.Timeline;
 }
 
-const Skills = forwardRef<SkillsHandles, {}>((props, ref) => {
+const Skills = forwardRef<SkillsHandles, {}>(({}, ref) => {
 
         //pass transitionTimeline to parent
         useImperativeHandle(ref, () => ({

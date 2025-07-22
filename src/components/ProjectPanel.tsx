@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import './ProjectPanel.css'
 
-const ProjectPanel = forwardRef<unknown, {id: string, title: string, paragraph: string, description: string }>((props, ref) => {
+const ProjectPanel = forwardRef<unknown, {id: string, title: string, paragraph: string, description: string }>((props) => {
 
         const lines = props.paragraph.split(/\r?\n/)
 

@@ -1,5 +1,5 @@
 import './Art.css'
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import { gsap } from 'gsap';
 import { useGSAP } from "@gsap/react";
 import GuitarWebp from '../images/Guitar.webp';
@@ -26,7 +26,7 @@ export interface ArtHandles {
 
 gsap.registerPlugin(useGSAP);
 
-const Art = forwardRef<ArtHandles, {}>((props, ref) => {
+const Art = forwardRef<ArtHandles, {}>(({}, ref) => {
 
         const transitionTl = useRef(gsap.timeline({paused: false}));
 

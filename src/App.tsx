@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css'
 import Navbar, {type NavbarHandles} from './components/Navbar'
 import Hero, { type HeroHandles } from './components/Hero'
@@ -22,7 +22,7 @@ export default function App() {
         let HEROTLLENGTH = 300
         let PROJECTSTLLENGTH = 600
         let ARTTLLENGTH = 1000
-        let SKILLSTLLENGTH = 0
+        // let SKILLSTLLENGTH = 0 // currently unused
         let CONTACTTLLENGTH = 100
 
         //get duration of
@@ -50,9 +50,9 @@ export default function App() {
                 const artHandles = artRef.current;
                 const artTl = artHandles?.getTimeline();
 
-                //skills animation
-                const skillsHandles = skillsRef.current;
-                const skillsTl = skillsHandles?.getTimeline();
+                //skills animation (skills has no timeline, since it currently breaks the tag cloud animation)
+                // const skillsHandles = skillsRef.current;
+                // const skillsTl = skillsHandles?.getTimeline();
 
                 //contact animation
                 const contactHandles = contactRef.current;
