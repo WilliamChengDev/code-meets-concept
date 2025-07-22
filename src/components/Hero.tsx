@@ -20,6 +20,7 @@ const Hero = forwardRef<HeroHandles, {}>(({}, ref) => {
         const lockScroll   = () => { document.body.style.overflow = 'hidden'; }; //to lock + unlock scroll on intro animation
         const unlockScroll = () => { document.body.style.overflow = ''; };
 
+        const pageRef = useRef<HTMLDivElement>(null); //ref for the entire page
         const line11Ref = useRef<HTMLDivElement>(null); //for subtitle position
         const line13Ref = useRef<HTMLDivElement>(null); //for William position
         const line18Ref = useRef<HTMLDivElement>(null); //for Cheng position
@@ -83,6 +84,7 @@ const Hero = forwardRef<HeroHandles, {}>(({}, ref) => {
         //position calculations
         const updateOverlay = () => {
                 if (
+                        !pageRef.current ||
                         !line11Ref.current ||
                         !line13Ref.current ||
                         !line18Ref.current ||
@@ -94,6 +96,8 @@ const Hero = forwardRef<HeroHandles, {}>(({}, ref) => {
                 ) {
                   return;
                 }
+
+                const pageRect = pageRef.current.getBoundingClientRect();
 
                 const lineHeight = lineRef.current.getBoundingClientRect().height;
                 // const lineHeight = line13Ref.current.getBoundingClientRect().height;
@@ -113,18 +117,20 @@ const Hero = forwardRef<HeroHandles, {}>(({}, ref) => {
                 const chengSizeBias = 1.45
                 const chengTopBias = 0.98
 
+                // const 
+
                 const lines = editorContainerRef.current.querySelectorAll<HTMLDivElement>('div'); //select all child divs
             
                 // set position, font size, and line height of the "William" text
-                williamRef.current.style.top = williamTopPx * williamTopBias+ "px";
+                williamRef.current.style.top = (williamTopPx - pageRect.top) * williamTopBias + "px"; //subtract page top for accurate resizing when hero page is not in view
                 williamRef.current.style.fontSize = gapPx * williamSizeBias + "px";
                 williamRef.current.style.lineHeight = gapPx * williamSizeBias + "px";
                 // set position, font size, and line height of the "Cheng" text
-                chengRef.current.style.top = chengTopPx * chengTopBias + "px";
+                chengRef.current.style.top = (chengTopPx - pageRect.top) * chengTopBias + "px"; //subtract page top for accurate resizing when hero page is not in view
                 chengRef.current.style.fontSize = gapPx * chengSizeBias + "px";
                 chengRef.current.style.lineHeight = gapPx * chengSizeBias + "px";
                 // set position of the subtitle text
-                subtitleRef.current.style.top = subtitleBottomPx * subtitleBottomBias + "px";
+                subtitleRef.current.style.top = (subtitleBottomPx - pageRect.top) * subtitleBottomBias + "px"; //subtract page top for accurate resizing when hero page is not in view
                 subtitleRef.current.style.fontSize = lineHeight * 2 + "px";
                 subtitleRef.current.style.lineHeight = lineHeight * 2 + "px";
 
@@ -134,10 +140,11 @@ const Hero = forwardRef<HeroHandles, {}>(({}, ref) => {
                 })
 
                 //debug
+                console.log("page position", pageRef.current.getBoundingClientRect().top);
                 // console.log("line13Bottom", line13Rect.bottom);
                 // console.log("line18Top", line18Rect.top);
                 // console.log("lineHeight", lineHeight);
-                // console.log("williamTopPx", williamTopPx);
+                console.log("williamTopPx", williamTopPx);
                 // console.log("gapPx", gapPx);
         };
 
@@ -160,7 +167,7 @@ const Hero = forwardRef<HeroHandles, {}>(({}, ref) => {
         }, []);
 
         return (
-        <div className="hero-container">
+        <div className="hero-container" ref={pageRef}>
                 <div className="code-editor-container">
                         <div className='topbar-container'>
                                 <div className='topbar-tab'>
