@@ -345,12 +345,16 @@
         }
 
         .william{
-                transform: scale(0.9);
-                /* text-align: center; */
+                transform: scale(0.7);
+                text-align: right;
+                /* left: 20vw; */
+                left: 0vw
         }
 
         .cheng{
-                transform: scale(0.9);
-                /* text-align: center; */
+                transform: scale(0.7);
+                text-align: right;
+                /* left: 20vw; */
+                left: 0vw
         }
 }

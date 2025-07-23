@@ -177,7 +177,7 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any, projectsTlDu
                                                                 })
                                                         }}>
                                                                 <span id='art-arrow'>{'>'}</span>
-                                                                {"Art"}
+                                                                <div>{"Art"}</div>
                                                         </button>
                                                 </div>
                                                 <div className='button-container'>
@@ -189,7 +189,7 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any, projectsTlDu
                                                                 })
                                                         }}>
                                                                 <span id='skills-arrow'>{'>'}</span>
-                                                                {"Skills"}
+                                                                <div>{"Skills"}</div>
                                                         </button>
                                                 </div>
                                                 <div className='button-container'>
@@ -201,7 +201,7 @@ const Navbar = forwardRef<NavbarHandles, {hero: any, projects: any, projectsTlDu
                                                                 })
                                                         }}>
                                                                 <span id='contact-arrow'>{'>'}</span>
-                                                                {"Contact"}
+                                                                <div>{"Contact"}</div>
                                                         </button>
                                                 </div>
                                         </div>

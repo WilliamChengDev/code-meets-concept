@@ -24,6 +24,7 @@
                         background-color: rgba(0, 0, 0, 0);
                         border-color: rgba(0, 0, 0, 0);
                         font-family: GeneralSans-Semibold;
+                        color: var(--dark);
                 }
 
                 .section-buttons-container{
@@ -61,6 +62,10 @@
                                                 transition: all 0.3s ease-in-out;
                                                 font-family: JetbrainsMono-Regular;
                                                 font-weight: bold;
+                                        }
+
+                                        .section-buttons-container button div{
+                                                color: var(--dark);
                                         }
 
                                 .projects-button::after{
