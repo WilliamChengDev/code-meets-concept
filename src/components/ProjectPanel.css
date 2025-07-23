@@ -101,6 +101,8 @@
                                 font-size: clamp(0.5rem, 1.3vw, 1rem); /*min preferred max*/
                                 user-select: none;
                                 text-wrap: nowrap;
+                                -webkit-text-size-adjust: none; /* Prevents text from resizing on mobile devices */
+                                text-size-adjust: none; /* Prevents text from resizing on mobile devices */
                         }
 
         .project-terminal-section-container{
